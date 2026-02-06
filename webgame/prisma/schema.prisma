@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  salt      String
+  hash      String
+  maxScore   Int      @default(0)
+  profilePicture String? //cloudinary länk
+  permissions String   @default("user") // "user", "admin",
+  saveFiles SaveFiles[]
+  createdAt DateTime @default(now())
+}
+
+model SaveFiles {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  saveData  Json
+  createdAt DateTime @default(now())  
+  user      User     @relation(fields: [userId], references: [id])
+}
