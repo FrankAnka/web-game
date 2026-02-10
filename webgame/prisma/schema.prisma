@@ -8,26 +8,49 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
+  id        String      @id @default(uuid())  
   email     String   @unique
-  name      String?
+  name      String?   @unique
   salt      String
   hash      String
-  maxScore   Int      @default(0)
-  profilePicture String? //cloudinary länk
+  sessions  Sessions[]
+  profilePicture String? // cloudinary link
   permissions String   @default("user") // "user", "admin",
+
+  maxScore   Int      @default(0)
   saveFiles SaveFiles[]
+
   createdAt DateTime @default(now())
 }
 
+
+model Sessions {
+  id String     @id @default(uuid())
+  token String @unique
+
+  createdAt DateTime @default(now())
+  lastUsed DateTime @default(now())
+  expiresAt DateTime
+
+  userAgent String?
+  ipAddress String?
+  devicenName String? 
+
+  user   User? @relation(fields: [userId], references: [id],onDelete: Cascade)
+  userId String?  
+
+}
+
+
 model SaveFiles {
   id        Int      @id @default(autoincrement())
-  userId    Int
+  userId    String
   saveData  Json
   createdAt DateTime @default(now())  
   user      User     @relation(fields: [userId], references: [id])
 }
+
