@@ -1,7 +1,23 @@
 [gd_scene format=3 uid="uid://vy3nr71u80p3"]
 
+[ext_resource type="Script" uid="uid://cdjvmyq1uaa58" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://ch4ghw2funcl6" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://fn2bj4mipxf2" path="res://pickup.tscn" id="2_0xm2m"]
 
 [node name="Main" type="Node2D" unique_id=437526742]
+script = ExtResource("1_h2yge")
 
 [node name="Player" parent="." unique_id=584665982 instance=ExtResource("1_ig7tw")]
+position = Vector2(194, 173)
+
+[node name="Pickup" parent="." unique_id=1777759721 instance=ExtResource("2_0xm2m")]
+position = Vector2(806, 260)
+
+[node name="Pickup2" parent="." unique_id=351734001 instance=ExtResource("2_0xm2m")]
+position = Vector2(622, 83)
+
+[node name="Button" type="Button" parent="." unique_id=1874727864]
+offset_right = 88.0
+offset_bottom = 77.0
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
