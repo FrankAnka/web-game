@@ -4,18 +4,18 @@ import {getUser} from '$lib/auth';
 
 
 
-export async function GET({ url,cookies }) {
+export async function GET({ cookies }) {
 	const user = await getUser(cookies);
-    const userid = user?.id;
+	if (!user) return json({ error: "Not logged in" }, { status: 401 });
 
 	const save = await prisma.saveFiles.findFirst({
-		where: { userId:userid  }
+		where: { userId: user.id }
 	});
 
+	// Instead of a 404 error, return an empty object with a 200 status
 	if (!save) {
-		return json({ error: "No save found" }, { status: 404 });
+		return json({ new_game: true, saveData: { score: 0, plants: [] } });
 	}
 
-	// session.farmData is the JSON object stored in Postgres
 	return json(save.saveData);
 }
