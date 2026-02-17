@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ch4ghw2funcl6" path="res://Scenes/player.tscn" id="2_kry3j"]
 [ext_resource type="PackedScene" uid="uid://cexd3qvv7qyiu" path="res://Scenes/map.tscn" id="3_21xkr"]
 [ext_resource type="PackedScene" uid="uid://jn14vxtymlvo" path="res://Scenes/day_manager.tscn" id="4_6bp64"]
+[ext_resource type="PackedScene" uid="uid://bixraa3xvf1y5" path="res://Scenes/planting_manager.tscn" id="5_kry3j"]
 
 [node name="Main" type="Node2D" unique_id=437526742]
 script = ExtResource("1_jjvhh")
@@ -14,3 +15,7 @@ position = Vector2(194, 173)
 [node name="Map" parent="." unique_id=1643062000 instance=ExtResource("3_21xkr")]
 
 [node name="DayManager" parent="." unique_id=1085104065 instance=ExtResource("4_6bp64")]
+
+[node name="PlantingManager" parent="." unique_id=1574053782 instance=ExtResource("5_kry3j")]
+
+[node name="Crops" type="Node2D" parent="." unique_id=1745873115]

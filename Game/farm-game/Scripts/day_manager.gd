@@ -1,11 +1,11 @@
-extends Node2D
+extends Node
 
 class_name DayManager
 
 signal day_changed(new_day: int)
 
 var current_day: int = 1
-var day_duration: float = 60.0 # Seconds per day
+@export var day_duration: float = 10.0 # Seconds per day
 var time_elapsed: float = 0.0
 
 func _process(delta):

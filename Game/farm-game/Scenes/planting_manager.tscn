@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bixraa3xvf1y5"]
+
+[ext_resource type="Script" uid="uid://cqlnf4yithhet" path="res://Scripts/planting_manager.gd" id="1_2b33d"]
+
+[node name="PlantingManager" type="Node2D" unique_id=1390169376]
+script = ExtResource("1_2b33d")
