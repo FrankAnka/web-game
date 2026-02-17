@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cdcvh1r6r24s6"]
+
+[ext_resource type="Script" uid="uid://k0gymxqje7mu" path="res://Scripts/crop.gd" id="1_iwhk8"]
+
+[node name="Crop Preset" type="Node2D" unique_id=1705956554]
+script = ExtResource("1_iwhk8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=806759373]

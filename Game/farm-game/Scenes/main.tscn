@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://vy3nr71u80p3"]
+
+[ext_resource type="Script" uid="uid://cdjvmyq1uaa58" path="res://Scripts/main.gd" id="1_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://ch4ghw2funcl6" path="res://Scenes/player.tscn" id="2_kry3j"]
+[ext_resource type="PackedScene" uid="uid://cexd3qvv7qyiu" path="res://Scenes/map.tscn" id="3_21xkr"]
+[ext_resource type="PackedScene" uid="uid://jn14vxtymlvo" path="res://Scenes/day_manager.tscn" id="4_6bp64"]
+
+[node name="Main" type="Node2D" unique_id=437526742]
+script = ExtResource("1_jjvhh")
+
+[node name="Player" parent="." unique_id=584665982 instance=ExtResource("2_kry3j")]
+position = Vector2(194, 173)
+
+[node name="Map" parent="." unique_id=1643062000 instance=ExtResource("3_21xkr")]
+
+[node name="DayManager" parent="." unique_id=1085104065 instance=ExtResource("4_6bp64")]

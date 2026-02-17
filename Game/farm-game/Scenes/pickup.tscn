@@ -1,17 +1,28 @@
-[gd_scene format=3 uid="uid://fn2bj4mipxf2"]
+[gd_scene format=3 uid="uid://dpaoj246rg665"]
 
-[ext_resource type="Texture2D" uid="uid://bypouu1ym71r8" path="res://icon.svg" id="1_iqk3k"]
-[ext_resource type="Script" uid="uid://cxlvcovpaxon4" path="res://area_2d.gd" id="2_weqpt"]
+[ext_resource type="Texture2D" uid="uid://bypouu1ym71r8" path="res://Assets/icon.svg" id="1_v7u4w"]
+
+[sub_resource type="GDScript" id="GDScript_cya6u"]
+script/source = "extends Area2D
+	
+func _on_body_entered(body: Node2D) -> void:
+	print(\"entered\")
+	if body.is_in_group(\"player\"):
+		body.money+=1
+		print(body.money)
+
+		queue_free()
+"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_weqpt"]
 
 [node name="Pickup" type="Node2D" unique_id=1777759721 groups=["pickup"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1645168405]
-texture = ExtResource("1_iqk3k")
+texture = ExtResource("1_v7u4w")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2079986621]
-script = ExtResource("2_weqpt")
+script = SubResource("GDScript_cya6u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=503705488]
 shape = SubResource("CircleShape2D_weqpt")

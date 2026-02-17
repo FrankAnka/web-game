@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bnrx2y1fo15fe"
-path="res://.godot/imported/Farm Game.icon.png-3badb83b346c260c8be1e50f36d9c4f7.ctex"
+path="res://.godot/imported/Farm Game.icon.png-219b6f2c53378f6f13017a6770374b16.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Farm Game.icon.png"
-dest_files=["res://.godot/imported/Farm Game.icon.png-3badb83b346c260c8be1e50f36d9c4f7.ctex"]
+source_file="res://Assets/Farm Game.icon.png"
+dest_files=["res://.godot/imported/Farm Game.icon.png-219b6f2c53378f6f13017a6770374b16.ctex"]
 
 [params]
 

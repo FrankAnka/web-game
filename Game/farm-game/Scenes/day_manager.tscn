@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://jn14vxtymlvo"]
+
+[ext_resource type="Script" uid="uid://dgw744goob8ku" path="res://Scripts/day_manager.gd" id="1_8ihrk"]
+
+[node name="DayManager" type="Node2D" unique_id=1085104065 groups=["day_manager"]]
+script = ExtResource("1_8ihrk")

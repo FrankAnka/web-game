@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://htjibxiec4dg"
-path="res://.godot/imported/Farm Game.png-dddcfedc179912b9ab53cfb5f057f3fe.ctex"
+uid="uid://ekgwuksvb5m3"
+path="res://.godot/imported/Hoed Dirt.png-bc2c4af4ad63b45817a87060b7ff7a91.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Farm Game.png"
-dest_files=["res://.godot/imported/Farm Game.png-dddcfedc179912b9ab53cfb5f057f3fe.ctex"]
+source_file="res://Assets/Terrain/Hoed Dirt.png"
+dest_files=["res://.godot/imported/Hoed Dirt.png-bc2c4af4ad63b45817a87060b7ff7a91.ctex"]
 
 [params]
 
