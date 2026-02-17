@@ -1,5 +1,5 @@
 extends Node2D
-
+@onready var player = $Player
 func save_game_data( score: int):
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
@@ -88,6 +88,7 @@ func _on_data_received(result, response_code, headers, body):
 func _apply_game_state():
 	# Here you unpack your "large" data
 	print("Loaded Score: ", farm_data.get("score", 0))
+	player.money = farm_data.get("score",0)
 	
 
 ####Todo:

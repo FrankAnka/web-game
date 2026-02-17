@@ -13,6 +13,10 @@ export async function POST({ request, cookies }) {
         update: { saveData: { score } },
         create: { userId: user.id, saveData: { score } }
     });
+    const updatedUser = await prisma.user.update({
+        where: { id: user.id },
+        data: { maxScore: score }
+    });
     console.log(`Updated user ${user.id} with new score: ${score}`);
     return json({ success: true, entry: newEntry });
 }   
