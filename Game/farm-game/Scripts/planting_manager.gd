@@ -2,11 +2,11 @@ extends Node2D
 
 # 1. Load the generic template and the specific crop data
 var crop_scene = preload("res://Scenes/crop_preset.tscn")
-var corn_resource = preload("res://Items/Crops/Resources/Corn.tres")
+var corn_resource = preload("res://Items/Crops/Resources/corn.tres")
 
 @onready var tile_map: Node2D = $"../Map/Ground"
 @onready var crop_container: Node2D = $"../Crops" # A folder node to keep the scene tree clean
-
+@onready var player = $"../Player"
 func plant_crop(tile_pos: Vector2i, crop_data: CropData):
 	# 2. Create an instance of the template
 	var new_crop = crop_scene.instantiate()
@@ -20,9 +20,17 @@ func plant_crop(tile_pos: Vector2i, crop_data: CropData):
 	
 	# 5. Add it to the world
 	crop_container.add_child(new_crop)
+	print("planted crop")
+	return new_crop
 
-# Example usage (called when player clicks hoed ground)
-func _input(event):
-	if event.is_action_pressed("right_click"):
-		var mouse_tile = tile_map.local_to_map(get_global_mouse_position())
-		plant_crop(mouse_tile, corn_resource)
+
+func can_plant_here(mouse_tile):
+	if tile_map.get_cell_source_id(mouse_tile)==1: #can be changed to look for customdata canplant if i add more plantable soilss
+		for crop in crop_container.get_children():
+			var crop_tile = tile_map.local_to_map(crop.global_position)
+			if crop_tile == mouse_tile:
+				print("Space occupied by: ", crop.name)
+				return false
+		return true
+	else:
+		return false

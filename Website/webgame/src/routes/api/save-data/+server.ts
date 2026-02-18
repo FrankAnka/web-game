@@ -5,18 +5,21 @@ import { getUser } from '$lib/auth';
 
 
 export async function POST({ request, cookies }) {
-    const user = await getUser(cookies);
-    const { score } = await request.json();
+    console.log("saved")
 
-    const newEntry = await prisma.saveFiles.upsert({
-        where: { userId: user.id },
-        update: { saveData: { score } },
-        create: { userId: user.id, saveData: { score } }
-    });
-    const updatedUser = await prisma.user.update({
-        where: { id: user.id },
-        data: { maxScore: score }
-    });
-    console.log(`Updated user ${user.id} with new score: ${score}`);
-    return json({ success: true, entry: newEntry });
+    const user = await getUser(cookies);
+    if (!user) return json({ error: "Unauthorized" }, { status: 401 });
+
+	const gameState = await request.json();
+
+	// Upsert: Update if exists, create if not
+	await prisma.saveFiles.upsert({
+		where: { userId: user.id },
+		update: { saveData: gameState },
+		create: {
+			userId: user.id,
+			saveData: gameState
+		}
+	});
+	return json({ success: true });
 }   

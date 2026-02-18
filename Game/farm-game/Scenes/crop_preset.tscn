@@ -2,7 +2,18 @@
 
 [ext_resource type="Script" uid="uid://k0gymxqje7mu" path="res://Scripts/crop.gd" id="1_iwhk8"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iwhk8"]
+size = Vector2(32, 32)
+
 [node name="Crop Preset" type="Node2D" unique_id=1705956554]
 script = ExtResource("1_iwhk8")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=806759373]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1608133086]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2137055627]
+shape = SubResource("RectangleShape2D_iwhk8")
+disabled = true
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

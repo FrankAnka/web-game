@@ -23,5 +23,34 @@ func _on_day_changed(_new_day_number):
 			current_stage += 1
 			_update_visuals()
 
+func set_growth_stage(stage: int):
+	current_stage = stage
+	# Update the sprite immediately
+	if data and data.growth_stages.size() > current_stage:
+		$Sprite2D.texture = data.growth_stages[current_stage]
+		
 func _update_visuals():
 	$Sprite2D.texture = data.growth_stages[current_stage]
+
+
+func _on_area_2d_input_event( event: InputEvent) -> void:
+	print("attemting harvest")
+	if event is InputEventMouseButton and event.pressed.index == MOUSE_BUTTON_LEFT:
+		get_viewport().set_input_as_handled()
+		var player = get_tree().get_first_node_in_group("player")
+		if player:
+			var dist = global_position.distance_to(player.global_position)
+			if dist > 192: # Roughly 4 tiles if tiles are 16px
+				print("Too far away!")
+				return
+		if current_stage>=data.growth_stages.size()-1:
+			harvest()
+			print("harvest")
+		else:
+			print("not yet")
+			
+			
+func harvest():
+	print("harvested ",data.plant_name)
+	#Will add to invento	ry after inv is established system
+	queue_free()			

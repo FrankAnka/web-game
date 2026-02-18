@@ -9,13 +9,32 @@
 [node name="Main" type="Node2D" unique_id=437526742]
 script = ExtResource("1_jjvhh")
 
-[node name="Player" parent="." unique_id=584665982 instance=ExtResource("2_kry3j")]
-position = Vector2(194, 173)
-
 [node name="Map" parent="." unique_id=1643062000 instance=ExtResource("3_21xkr")]
 
-[node name="DayManager" parent="." unique_id=1085104065 instance=ExtResource("4_6bp64")]
+[node name="Crops" type="Node2D" parent="." unique_id=1745873115]
+
+[node name="Player" parent="." unique_id=584665982 instance=ExtResource("2_kry3j")]
+position = Vector2(194, 173)
+scale = Vector2(0.5, 0.5)
 
 [node name="PlantingManager" parent="." unique_id=1574053782 instance=ExtResource("5_kry3j")]
 
-[node name="Crops" type="Node2D" parent="." unique_id=1745873115]
+[node name="DayManager" parent="." unique_id=1085104065 instance=ExtResource("4_6bp64")]
+day_duration = 1.0
+
+[node name="Button" type="Button" parent="." unique_id=972018830]
+offset_left = 21.0
+offset_top = -32.0
+offset_right = 68.0
+offset_bottom = -1.0
+text = "SAVE"
+
+[node name="Button2" type="Button" parent="." unique_id=1376217740]
+offset_left = 160.0
+offset_top = -30.0
+offset_right = 212.0
+offset_bottom = 1.0
+text = "LOAD"
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="Button2" to="." method="_on_button_2_button_down"]

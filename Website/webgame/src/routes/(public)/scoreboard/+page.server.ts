@@ -15,7 +15,7 @@ export const load = (async () => {
 			maxScore: {
 				gt: 0
 			}
-		},
+		},  
 		take: 100
 	});
 
