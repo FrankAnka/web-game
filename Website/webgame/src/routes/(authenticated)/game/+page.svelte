@@ -7,15 +7,13 @@
 
 
 
-<h1>Farm Game</h1>
-<h3>{user.maxScore}</h3>
 <div class="game-container">
     
     <iframe 
         src="/game/Farm Game.html" 
         title="Godot Game"
-        width="1024" 
-        height="600"
+        width="2000" 
+        height="780"
         allow="cross-origin-isolated">
     </iframe>
 </div>

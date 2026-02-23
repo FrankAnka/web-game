@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="CropData" format=3 uid="uid://vwa1tqhhyjv2"]
+[gd_resource type="Resource" script_class="CropData" format=3 uid="uid://bya1lex7t5bsp"]
 
 [ext_resource type="Texture2D" uid="uid://cxn5lc2h3sdm1" path="res://Items/Crops/Textures/Red.png" id="1_nx8ce"]
 [ext_resource type="Script" uid="uid://gb7qjv4bugie" path="res://Scripts/CropData.gd" id="1_v80qe"]
 [ext_resource type="Texture2D" uid="uid://d0j82htw4735k" path="res://Items/Crops/Textures/Blue.png" id="2_1sce0"]
+[ext_resource type="Texture2D" uid="uid://oakxc1u4lb0g" path="res://Assets/icons/Corn.png" id="3_5auhw"]
 [ext_resource type="Texture2D" uid="uid://cfnedse76gf2i" path="res://Items/Crops/Textures/Greeen.png" id="3_7dwi2"]
 
 [resource]
@@ -10,4 +11,5 @@ script = ExtResource("1_v80qe")
 plant_name = "Corn"
 growth_stages = Array[Texture2D]([ExtResource("1_nx8ce"), ExtResource("2_1sce0"), ExtResource("3_7dwi2")])
 req_water = true
+icon = ExtResource("3_5auhw")
 metadata/_custom_type_script = "uid://gb7qjv4bugie"

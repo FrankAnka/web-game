@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://be8cfaoveh2nc"]
+
+[ext_resource type="PackedScene" uid="uid://322oampvrhjv" path="res://Scenes/UI/inventory_slot.tscn" id="1_trnr3"]
+
+[node name="Hotbar" type="Control" unique_id=27488191]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1359669284]
+layout_mode = 0
+
+[node name="Background" type="MarginContainer" parent="PanelContainer" unique_id=364070762]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/Background" unique_id=1765672185]
+layout_mode = 2
+columns = 9
+
+[node name="inventorySlot" parent="PanelContainer/Background/GridContainer" unique_id=546051914 instance=ExtResource("1_trnr3")]
+layout_mode = 2
+
+[node name="inventorySlot2" parent="PanelContainer/Background/GridContainer" unique_id=1629675339 instance=ExtResource("1_trnr3")]
+layout_mode = 2
+
+[node name="inventorySlot3" parent="PanelContainer/Background/GridContainer" unique_id=180744318 instance=ExtResource("1_trnr3")]
+layout_mode = 2
+
+[node name="inventorySlot4" parent="PanelContainer/Background/GridContainer" unique_id=1783296563 instance=ExtResource("1_trnr3")]
+layout_mode = 2
+
+[node name="inventorySlot5" parent="PanelContainer/Background/GridContainer" unique_id=569439021 instance=ExtResource("1_trnr3")]
+layout_mode = 2
+
+[node name="inventorySlot6" parent="PanelContainer/Background/GridContainer" unique_id=1433005589 instance=ExtResource("1_trnr3")]
+layout_mode = 2
+
+[node name="inventorySlot7" parent="PanelContainer/Background/GridContainer" unique_id=859730142 instance=ExtResource("1_trnr3")]
+layout_mode = 2
+
+[node name="inventorySlot8" parent="PanelContainer/Background/GridContainer" unique_id=888955369 instance=ExtResource("1_trnr3")]
+layout_mode = 2
+
+[node name="inventorySlot9" parent="PanelContainer/Background/GridContainer" unique_id=212433431 instance=ExtResource("1_trnr3")]
+layout_mode = 2

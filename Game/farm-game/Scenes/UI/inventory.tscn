@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://ds6povkuuoycc"]
+
+[ext_resource type="Script" uid="uid://b2vv5f5s3ki35" path="res://Scenes/inventory.gd" id="1_s6m5x"]
+
+[node name="InventoryUI" type="Control" unique_id=737029227]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s6m5x")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1261396880]
+layout_mode = 0
+
+[node name="Background" type="MarginContainer" parent="PanelContainer" unique_id=1569999591]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/Background" unique_id=819508493]
+layout_mode = 2
+columns = 9
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=1864393619]
+custom_minimum_size = Vector2(600, 200)
+layout_mode = 0
+offset_left = 610.0
+offset_right = 1210.0
+offset_bottom = 200.0
+size_flags_horizontal = 8
+current_tab = 1
+drag_to_rearrange_enabled = true
+
+[node name="GridContainer" type="GridContainer" parent="TabContainer" unique_id=1910846353]
+visible = false
+layout_mode = 2
+columns = 3
+metadata/_tab_index = 0
+
+[node name="GridContainer2" type="GridContainer" parent="TabContainer" unique_id=769576373]
+layout_mode = 2
+columns = 3
+metadata/_tab_index = 1

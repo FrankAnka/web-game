@@ -1,7 +1,7 @@
 extends Node2D
 
 # 1. Load the generic template and the specific crop data
-var crop_scene = preload("res://Scenes/crop_preset.tscn")
+var crop_scene = preload("res://Scenes/Presets/crop_preset.tscn")
 var corn_resource = preload("res://Items/Crops/Resources/corn.tres")
 
 @onready var tile_map: Node2D = $"../Map/Ground"
@@ -20,7 +20,6 @@ func plant_crop(tile_pos: Vector2i, crop_data: CropData):
 	
 	# 5. Add it to the world
 	crop_container.add_child(new_crop)
-	print("planted crop")
 	return new_crop
 
 
@@ -29,7 +28,6 @@ func can_plant_here(mouse_tile):
 		for crop in crop_container.get_children():
 			var crop_tile = tile_map.local_to_map(crop.global_position)
 			if crop_tile == mouse_tile:
-				print("Space occupied by: ", crop.name)
 				return false
 		return true
 	else:

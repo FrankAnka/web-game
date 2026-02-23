@@ -5,6 +5,7 @@ extends Node2D
 @onready var planting_manager: Node2D = $PlantingManager
 @onready var ground_layer = $Map.ground
 @onready var crop_container = $Crops
+@onready var game_manager: Node2D = $GameManager
 
 @export var crop_library: Dictionary = {
 	"corn": preload("res://Items/Crops/Resources/corn.tres"),
@@ -18,9 +19,11 @@ func get_full_gamestate() -> Dictionary:
 			"current_day": day_manager.current_day,
 		},
 		"map_data": [],
-		"plants": []
+		"plants": [],
+		"inventory": game_manager.inventory,
+		"money": game_manager.money
 	}
-
+	
 	# 1. Save Modified Map Tiles (e.g., Hoed Ground)
 	# We only save tiles that are NOT the default (Source ID 0)
 	var used_cells = ground_layer.get_used_cells()
@@ -45,7 +48,7 @@ func get_full_gamestate() -> Dictionary:
 			"x": crop_pos.x,
 			"y": crop_pos.y
 		})
-
+	print(state)
 	return state
 
 #Sending data
@@ -59,6 +62,7 @@ func save_to_database():
 	var url = origin + "/api/save-data"
 	
 	var payload = get_full_gamestate()
+	print(payload)
 	var json_data = JSON.stringify(payload)
 	var headers = ["Content-Type: application/json"]
 	
@@ -149,6 +153,29 @@ func _apply_game_state(data: Dictionary):
 				new_crop.set_growth_stage(int(p_data.stage))
 			else:
 				print("Error: Crop type '", type_key, "' not found in crop_library!")
+	# Restore Inventory and Money
+	if data.has("inventory"):
+		var raw_inv = data["inventory"]
+		var clean_inv = {}
+		
+		for key in raw_inv.keys():
+			# 1. Convert the Key (the slot number) to an int
+			var slot_index = int(key)
+			
+			var slot_data = raw_inv[key]
+			
+			# 2. Check if the slot actually has data (isn't null)
+			if slot_data != null and slot_data is Dictionary:
+				# 3. Convert the 'count' inside the slot to an int
+				var clean_slot = {
+					"type": slot_data["type"],
+					"count": int(slot_data["count"]) # Force float to int
+				}
+				clean_inv[slot_index] = clean_slot
+			else:
+				clean_inv[slot_index] = null
+				
+		game_manager.inventory = clean_inv
 
 func _on_button_2_button_down() -> void:
 	print("fetch pressed")
@@ -170,10 +197,9 @@ func _input(event):
 		if plant_to_harvest:
 			if plant_to_harvest.current_stage >= plant_to_harvest.data.growth_stages.size() - 1:
 				plant_to_harvest.harvest()
-			else:
-				print("Plant is still growing!")
 		else:
+			if planting_manager.can_plant_here(mouse_tile):
 			# Only plant if no crop was found at this tile
-			planting_manager.plant_crop(mouse_tile,crop_library["corn"])
+				planting_manager.plant_crop(mouse_tile,crop_library["corn"])
 		
 	

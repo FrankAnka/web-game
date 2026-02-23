@@ -3,8 +3,11 @@
 [ext_resource type="Script" uid="uid://cdjvmyq1uaa58" path="res://Scripts/main.gd" id="1_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://ch4ghw2funcl6" path="res://Scenes/player.tscn" id="2_kry3j"]
 [ext_resource type="PackedScene" uid="uid://cexd3qvv7qyiu" path="res://Scenes/map.tscn" id="3_21xkr"]
-[ext_resource type="PackedScene" uid="uid://jn14vxtymlvo" path="res://Scenes/day_manager.tscn" id="4_6bp64"]
-[ext_resource type="PackedScene" uid="uid://bixraa3xvf1y5" path="res://Scenes/planting_manager.tscn" id="5_kry3j"]
+[ext_resource type="PackedScene" uid="uid://jn14vxtymlvo" path="res://Scenes/Managers/day_manager.tscn" id="4_6bp64"]
+[ext_resource type="PackedScene" uid="uid://bixraa3xvf1y5" path="res://Scenes/Managers/planting_manager.tscn" id="5_kry3j"]
+[ext_resource type="PackedScene" uid="uid://b6dqgo0hgm8ua" path="res://Scenes/Managers/game_manager.tscn" id="6_21xkr"]
+[ext_resource type="PackedScene" uid="uid://ds6povkuuoycc" path="res://Scenes/UI/inventory.tscn" id="7_6bp64"]
+[ext_resource type="PackedScene" uid="uid://be8cfaoveh2nc" path="res://Scenes/UI/hotbar.tscn" id="8_344ge"]
 
 [node name="Main" type="Node2D" unique_id=437526742]
 script = ExtResource("1_jjvhh")
@@ -22,19 +25,56 @@ scale = Vector2(0.5, 0.5)
 [node name="DayManager" parent="." unique_id=1085104065 instance=ExtResource("4_6bp64")]
 day_duration = 1.0
 
-[node name="Button" type="Button" parent="." unique_id=972018830]
-offset_left = 21.0
-offset_top = -32.0
-offset_right = 68.0
-offset_bottom = -1.0
-text = "SAVE"
+[node name="GameManager" parent="." unique_id=272472241 instance=ExtResource("6_21xkr")]
 
-[node name="Button2" type="Button" parent="." unique_id=1376217740]
-offset_left = 160.0
-offset_top = -30.0
-offset_right = 212.0
-offset_bottom = 1.0
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1354511227]
+
+[node name="UI" type="Control" parent="CanvasLayer" unique_id=1477090922]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="InventoryUI" parent="CanvasLayer/UI" unique_id=737029227 instance=ExtResource("7_6bp64")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.32200003
+anchor_top = 0.294
+anchor_right = 0.32200003
+anchor_bottom = 0.294
+offset_left = -174.94403
+offset_top = -46.511993
+offset_right = -174.94403
+offset_bottom = -46.511993
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Button2" type="Button" parent="CanvasLayer/UI" unique_id=1376217740]
+layout_mode = 1
+offset_right = 52.0
+offset_bottom = 31.0
 text = "LOAD"
 
-[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
-[connection signal="button_down" from="Button2" to="." method="_on_button_2_button_down"]
+[node name="Button" type="Button" parent="CanvasLayer/UI" unique_id=972018830]
+layout_mode = 1
+offset_left = 52.0
+offset_right = 99.0
+offset_bottom = 31.0
+text = "SAVE"
+
+[node name="Hotbar" parent="CanvasLayer" unique_id=27488191 instance=ExtResource("8_344ge")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_left = -246.0
+offset_top = -70.0
+offset_right = -246.0
+offset_bottom = -70.0
+grow_vertical = 0
+
+[connection signal="button_down" from="CanvasLayer/UI/Button2" to="." method="_on_button_2_button_down"]
+[connection signal="button_down" from="CanvasLayer/UI/Button" to="." method="_on_button_button_down"]
