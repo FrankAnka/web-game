@@ -2,6 +2,26 @@
 
 [ext_resource type="Script" uid="uid://do7fq8otr2nit" path="res://Scenes/inventory_slot.gd" id="1_brh76"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_brh76"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.00015085955, 0.00015085955, 0.00015085955, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.828401, 0.8351588, 0.21841711, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Theme" id="Theme_nxjtc"]
+Panel/styles/panel = SubResource("StyleBoxFlat_brh76")
+
 [node name="inventorySlot" type="PanelContainer" unique_id=546051914]
 custom_minimum_size = Vector2(64, 64)
 offset_right = 64.0
@@ -17,3 +37,13 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 horizontal_alignment = 2
 vertical_alignment = 2
+
+[node name="SelectionBorder" type="Panel" parent="." unique_id=1926624421]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme = SubResource("Theme_nxjtc")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

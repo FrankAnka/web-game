@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c34csjlc71l2c"]
+
+[ext_resource type="Script" uid="uid://vurfigq8llh6" path="res://mouse_item.gd" id="1_5vp48"]
+
+[node name="MouseItem" type="Control" unique_id=1186603526]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_5vp48")
+
+[node name="Icon" type="TextureRect" parent="." unique_id=1996706145]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="." unique_id=1736235609]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

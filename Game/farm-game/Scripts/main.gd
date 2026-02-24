@@ -5,7 +5,6 @@ extends Node2D
 @onready var planting_manager: Node2D = $PlantingManager
 @onready var ground_layer = $Map.ground
 @onready var crop_container = $Crops
-@onready var game_manager: Node2D = $GameManager
 
 @export var crop_library: Dictionary = {
 	"corn": preload("res://Items/Crops/Resources/corn.tres"),
@@ -20,8 +19,8 @@ func get_full_gamestate() -> Dictionary:
 		},
 		"map_data": [],
 		"plants": [],
-		"inventory": game_manager.inventory,
-		"money": game_manager.money
+		"inventory": GameManager.inventory,
+		"money": GameManager.money
 	}
 	
 	# 1. Save Modified Map Tiles (e.g., Hoed Ground)
@@ -69,7 +68,7 @@ func save_to_database():
 	http_request.request(url, headers, HTTPClient.METHOD_POST, json_data)
 	print("Saving game state...")
 	
-func _on_request_completed(result, response_code, headers, body):
+func _on_request_completed( response_code,  body):
 	print("request completed")
 	var response = JSON.parse_string(body.get_string_from_utf8())
 	if response_code == 200:
@@ -103,7 +102,7 @@ func fetch_game_data():
 		is_loading = false
 		push_error("HTTP Request failed to initiate.")
 
-func _on_data_received(result, response_code, headers, body):
+func _on_data_received(response_code, body):
 	print("data recieved")
 	is_loading = false
 	
@@ -175,7 +174,7 @@ func _apply_game_state(data: Dictionary):
 			else:
 				clean_inv[slot_index] = null
 				
-		game_manager.inventory = clean_inv
+		GameManager.inventory = clean_inv
 
 func _on_button_2_button_down() -> void:
 	print("fetch pressed")

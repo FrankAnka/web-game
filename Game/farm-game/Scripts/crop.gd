@@ -1,6 +1,5 @@
 extends Node2D
 
-@onready var game_manager: Node2D = $"../../GameManager"
 @export var data: CropData
 var current_stage: int = 0
 var days_planted: int = 0
@@ -46,5 +45,5 @@ func _on_area_2d_input_event( event: InputEvent) -> void:
 			
 			
 func harvest():
-	game_manager.add_item(data.plant_name,randi_range(data.min_harvest,data.max_harvest))
+	GameManager.add_item(data.plant_name,randi_range(data.min_harvest,data.max_harvest))
 	queue_free()			
