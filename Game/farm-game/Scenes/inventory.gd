@@ -36,22 +36,22 @@ func refresh_ui():
 		else:
 			slot_ui.update_slot(null, 0)
 func _input(event):
-	# Toggle visibility with 'I' key
 	if event.is_action_pressed("inventory"):
 		visible = !visible
-		if visible:
-			refresh_ui()
+		if visible: refresh_ui()
+
+	# If we release the mouse and still have a held_item, Godot's 
+	# drag-and-drop 'failed' because it didn't land on a slot.
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if not event.pressed and GameManager.held_item != null:
-			# Small delay to see if a slot handled it first
-			await get_tree().process_frame 
-			
-			# If the item is STILL held, it means we dropped it in the "void"
+			# Wait a tiny bit to see if _drop_data handled it
+			await get_tree().process_frame
 			if GameManager.held_item != null:
+				print("Dropped in void, returning item...")
 				return_item_to_inventory()
 
 func return_item_to_inventory():
-	# Logic to find the first empty slot and put the held_item back
 	GameManager.add_item(GameManager.held_item["type"], GameManager.held_item["count"])
 	GameManager.held_item = null
-	GameManager.mouse_slot_updated.emit()
+	# No need to manually emit, add_item does it!
+	
