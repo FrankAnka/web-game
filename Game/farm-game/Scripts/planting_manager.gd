@@ -24,7 +24,8 @@ func plant_crop(tile_pos: Vector2i, crop_data: CropData):
 
 
 func can_plant_here(mouse_tile):
-	if tile_map.get_cell_source_id(mouse_tile)==1: #can be changed to look for customdata canplant if i add more plantable soilss
+	if tile_map.get_cell_source_id(mouse_tile)==2:
+		print("asdasd	") #can be changed to look for customdata canplant if i add more plantable soilss
 		for crop in crop_container.get_children():
 			var crop_tile = tile_map.local_to_map(crop.global_position)
 			if crop_tile == mouse_tile:

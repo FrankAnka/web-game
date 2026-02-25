@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://bixraa3xvf1y5" path="res://Scenes/Managers/planting_manager.tscn" id="5_kry3j"]
 [ext_resource type="PackedScene" uid="uid://b6dqgo0hgm8ua" path="res://Scenes/Managers/game_manager.tscn" id="6_21xkr"]
 [ext_resource type="PackedScene" uid="uid://ds6povkuuoycc" path="res://Scenes/UI/inventory.tscn" id="7_6bp64"]
-[ext_resource type="PackedScene" uid="uid://be8cfaoveh2nc" path="res://Scenes/UI/hotbar.tscn" id="8_344ge"]
 [ext_resource type="PackedScene" uid="uid://c34csjlc71l2c" path="res://Scenes/UI/mouse_item.tscn" id="9_ynf5e"]
 
 [node name="Main" type="Node2D" unique_id=437526742]
@@ -41,23 +40,13 @@ metadata/_edit_use_anchors_ = true
 
 [node name="InventoryUI" parent="CanvasLayer/UI" unique_id=737029227 instance=ExtResource("7_6bp64")]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.32200003
-anchor_top = 0.294
-anchor_right = 0.32200003
-anchor_bottom = 0.294
-offset_left = -174.94403
-offset_top = -46.511993
-offset_right = -174.94403
-offset_bottom = -46.511993
-grow_horizontal = 1
-grow_vertical = 1
 
 [node name="Button2" type="Button" parent="CanvasLayer/UI" unique_id=1376217740]
 layout_mode = 1
 offset_right = 52.0
 offset_bottom = 31.0
 text = "LOAD"
+metadata/_edit_use_anchors_ = true
 
 [node name="Button" type="Button" parent="CanvasLayer/UI" unique_id=972018830]
 layout_mode = 1
@@ -65,17 +54,7 @@ offset_left = 52.0
 offset_right = 99.0
 offset_bottom = 31.0
 text = "SAVE"
-
-[node name="Hotbar" parent="CanvasLayer" unique_id=27488191 instance=ExtResource("8_344ge")]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-offset_left = -246.0
-offset_top = -70.0
-offset_right = -246.0
-offset_bottom = -70.0
-grow_vertical = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="MouseItem" parent="CanvasLayer" unique_id=1186603526 instance=ExtResource("9_ynf5e")]
 

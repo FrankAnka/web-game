@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d3q0ear7vtghu" path="res://Scripts/map.gd" id="1_e0an3"]
 [ext_resource type="Texture2D" uid="uid://cflqkl8edrilj" path="res://Assets/Terrain/64Dirt.png" id="2_p3ir5"]
 [ext_resource type="Texture2D" uid="uid://wjb3r8iuprlk" path="res://Assets/Terrain/64Hoed.png" id="3_myvm1"]
+[ext_resource type="Texture2D" uid="uid://d2nqvr5pw2ur0" path="res://Assets/Terrain/64Watered.png" id="4_myvm1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iw27f"]
 texture = ExtResource("2_p3ir5")
@@ -16,6 +17,12 @@ texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/custom_data_0 = true
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q0mm3"]
+texture = ExtResource("4_myvm1")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/custom_data_1 = true
+
 [sub_resource type="TileSet" id="TileSet_e6lj2"]
 tile_size = Vector2i(64, 64)
 custom_data_layer_0/name = "can_hoe"
@@ -26,6 +33,7 @@ custom_data_layer_2/name = "terrain_type"
 custom_data_layer_2/type = 4
 sources/0 = SubResource("TileSetAtlasSource_iw27f")
 sources/1 = SubResource("TileSetAtlasSource_71pa8")
+sources/2 = SubResource("TileSetAtlasSource_q0mm3")
 
 [node name="Map" type="Node2D" unique_id=1643062000]
 script = ExtResource("1_e0an3")

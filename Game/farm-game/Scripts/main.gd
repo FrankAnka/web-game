@@ -186,19 +186,22 @@ func _input(event):
 		var mouse_tile = ground_layer.local_to_map(get_global_mouse_position())
 		
 		# 1. Look for a plant at this tile FIRST
-		var plant_to_harvest = null
-		for crop in crop_container.get_children():
-			if ground_layer.local_to_map(crop.global_position) == mouse_tile:
-				plant_to_harvest = crop
-				break
-		
-		# 2. Decide: Harvest or Plant?
-		if plant_to_harvest:
-			if plant_to_harvest.current_stage >= plant_to_harvest.data.growth_stages.size() - 1:
-				plant_to_harvest.harvest()
-		else:
-			if planting_manager.can_plant_here(mouse_tile):
-			# Only plant if no crop was found at this tile
-				planting_manager.plant_crop(mouse_tile,crop_library["corn"])
+		if GameManager.selected_item.is_empty() ||GameManager.selected_item["type"] != "watering can" :
+			var plant_to_harvest = null
+			for crop in crop_container.get_children():
+				if ground_layer.local_to_map(crop.global_position) == mouse_tile:
+					plant_to_harvest = crop
+					break
+			
+			# 2. Decide: Harvest or Plant?
+			if plant_to_harvest:
+				if plant_to_harvest.current_stage >= plant_to_harvest.data.growth_stages.size() - 1:
+					plant_to_harvest.harvest()
+			else:
+				if planting_manager.can_plant_here(mouse_tile):
+				# Only plant if no crop was found at this tile
+					planting_manager.plant_crop(mouse_tile,crop_library["corn"])
+		elif GameManager.selected_item["type"] == "watering can":
+			$Map.water_square()
 		
 	
