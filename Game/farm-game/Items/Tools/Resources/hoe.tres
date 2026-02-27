@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ToolData" format=3 uid="uid://d1cr6xbbc5lo7"]
+
+[ext_resource type="Script" uid="uid://30kuanvw723k" path="res://Scripts/ToolData.gd" id="1_2lh2m"]
+[ext_resource type="Texture2D" uid="uid://77prwr17e2kb" path="res://Assets/icons/hoe.png" id="1_mjgax"]
+
+[resource]
+script = ExtResource("1_2lh2m")
+name = "Hoe"
+icon = ExtResource("1_mjgax")
+metadata/_custom_type_script = "uid://30kuanvw723k"

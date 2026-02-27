@@ -8,7 +8,7 @@ extends Node2D
 
 @export var crop_library: Dictionary = {
 	"corn": preload("res://Items/Crops/Resources/corn.tres"),
-	
+	"wheat":preload("res://Items/Crops/Resources/wheat.tres")
 }
 
 #Creating data
@@ -182,12 +182,12 @@ func _on_button_2_button_down() -> void:
 
 #Harvesting/interacting
 func _input(event):
+	var mouse_tile = ground_layer.local_to_map(get_global_mouse_position())
 	if event.is_action_pressed("right_click"):
-		var mouse_tile = ground_layer.local_to_map(get_global_mouse_position())
 		
 		# 1. Look for a plant at this tile FIRST
 		if GameManager.selected_item.is_empty() ||GameManager.selected_item["type"] != "watering can" :
-			var plant_to_harvest = null
+			var plant_to_harvest = null	
 			for crop in crop_container.get_children():
 				if ground_layer.local_to_map(crop.global_position) == mouse_tile:
 					plant_to_harvest = crop
@@ -200,8 +200,17 @@ func _input(event):
 			else:
 				if planting_manager.can_plant_here(mouse_tile):
 				# Only plant if no crop was found at this tile
-					planting_manager.plant_crop(mouse_tile,crop_library["corn"])
+					if GameManager.selected_item.is_empty() !=true:
+						if GameManager.selected_item["type"].contains("seed"):
+							var crop_to_plant = GameManager.selected_item["type"].replace("seeds","")
+							print("crop",crop_to_plant)
+							planting_manager.plant_crop(mouse_tile,crop_library[crop_to_plant])
+							GameManager.selected_item["count"]-=1
+							GameManager.inventory_changed.emit()
+						else: print("not a seed")
 		elif GameManager.selected_item["type"] == "watering can":
 			$Map.water_square()
-		
-	
+	if event.is_action_pressed(("left_click")):
+		if GameManager.selected_item!={} and GameManager.selected_item["type"]=="hoe":
+			if ground_layer.get_cell_source_id(mouse_tile)==0:
+				$Map.hoe_square()

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c34csjlc71l2c"]
 
-[ext_resource type="Script" uid="uid://vurfigq8llh6" path="res://mouse_item.gd" id="1_5vp48"]
+[ext_resource type="Script" uid="uid://vurfigq8llh6" path="res://Scripts/mouse_item.gd" id="1_5vp48"]
 
 [node name="MouseItem" type="Control" unique_id=1186603526]
 layout_mode = 3

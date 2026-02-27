@@ -16,6 +16,5 @@ func _process(delta):
 func _advance_day():
 	time_elapsed = 0.0
 	current_day += 1
-	print("It is now Day ", current_day)
 	# Notify every plant in the game that the day has changed
 	day_changed.emit(current_day)

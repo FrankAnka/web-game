@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="SeedData" format=3 uid="uid://k77f6icbbjpv"]
+
+[ext_resource type="Script" uid="uid://cr0os8hsm45xv" path="res://Scripts/SeedData.gd" id="1_bpbna"]
+[ext_resource type="Texture2D" uid="uid://b4xpjj2dbwktn" path="res://Assets/icons/corn seeds.png" id="1_irefm"]
+
+[resource]
+script = ExtResource("1_bpbna")
+item_name = "What seeds"
+plant_to_place = "wheat"
+icon = ExtResource("1_irefm")
+sell_price = 123
+metadata/_custom_type_script = "uid://cr0os8hsm45xv"

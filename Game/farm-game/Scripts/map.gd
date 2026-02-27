@@ -2,8 +2,8 @@ extends Node2D
 
 @onready var ground=$Ground
 @onready var player=$"../Player"
-func _input(event):
-	if event.is_action_pressed("left_click"):
+
+func hoe_square():
 		var mouse_pos = get_global_mouse_position()
 		var tile_pos = ground.local_to_map(mouse_pos)
 		

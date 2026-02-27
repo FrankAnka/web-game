@@ -38,7 +38,11 @@ func refresh_ui():
 		var data = GameManager.inventory.get(slot_index)
 	
 		if data:
-			if data["type"] != "watering can":
+			if data["count"]<=0:
+				slot_ui.update_slot(null,0)
+				GameManager.inventory.erase(slot_index)
+				print(GameManager.inventory)
+			elif data["type"] != "watering can" and data["type"]!="hoe":
 				var item_resource = load("res://Items/Crops/Resources/" + data["type"] + ".tres")
 				# Pass the dictionary {"type": "corn", "count": 999} to the slot
 				slot_ui.update_slot(item_resource, data["count"])
@@ -68,6 +72,7 @@ func _input(event):
 
 func return_item_to_inventory():
 	print(GameManager.held_item)
-	GameManager.add_item(GameManager.held_item["type"], GameManager.held_item["count"])
-	GameManager.held_item = null
+	if GameManager.held_item!={}:
+		GameManager.add_item(GameManager.held_item["type"], GameManager.held_item["count"])
+		GameManager.held_item = null
 	# No need to manually emit, add_item does it!

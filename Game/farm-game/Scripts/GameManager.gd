@@ -1,6 +1,6 @@
 extends Node2D
 
-var inventory = {82:{"type":"watering can","count":1}}
+var inventory = {81:{"type":"hoe","count":1},82:{"type":"watering can","count":1},84:{"type":"cornseeds","count":3},85:{"type":"wheatseeds","count":3}}
 var money = 0
 var inventory_slots = 20 # Total slots
 var max_stack = 999
@@ -57,7 +57,7 @@ func drop_into_slot(slot_index: int):
 	inventory_changed.emit()
 	mouse_slot_updated.emit()
 func _input(event):
-	if event is InputEventKey and event.key_label in range(49,57):
+	if event is InputEventKey and event.key_label in range(49,58):
 		match event.key_label:
 			49:
 				selected_slot=1
@@ -80,5 +80,5 @@ func _input(event):
 		if inventory.get(80+selected_slot)!=null:
 			selected_item = inventory[80+selected_slot]
 		else:
-			selected_item.clear()
+			selected_item={}
 		inventory_changed.emit()
