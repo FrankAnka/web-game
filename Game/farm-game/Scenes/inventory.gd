@@ -4,6 +4,7 @@ extends Control
 
 @onready var hotbar_grid: GridContainer = $Hotbar/Background/GridContainer
 @onready var grid: GridContainer = $PanelContainer/Background/GridContainer
+@onready var label: Label = $PanelContainer2/Label
 
 const TOTAL_SLOTS = 80
 const hotbar_slots = 9
@@ -32,6 +33,7 @@ func _ready():
 
 
 func refresh_ui():
+	label.text=str(GameManager.money)
 	for i in range(TOTAL_SLOTS+hotbar_slots):
 		var slot_index = i + 1
 		var slot_ui = slots[i]
@@ -53,7 +55,7 @@ func refresh_ui():
 		else:
 			slot_ui.update_slot(null, 0)
 			
-func _input(event):
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory"):
 		$PanelContainer.visible = !$PanelContainer.visible
 		$TabContainer.visible = !$TabContainer.visible

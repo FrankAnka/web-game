@@ -181,10 +181,11 @@ func _on_button_2_button_down() -> void:
 	fetch_game_data()
 
 #Harvesting/interacting
-func _input(event):
+func _unhandled_input(event: InputEvent) -> void:
+	
 	var mouse_tile = ground_layer.local_to_map(get_global_mouse_position())
 	if event.is_action_pressed("right_click"):
-		
+		print("right")
 		# 1. Look for a plant at this tile FIRST
 		if GameManager.selected_item.is_empty() ||GameManager.selected_item["type"] != "watering can" :
 			var plant_to_harvest = null	
@@ -197,6 +198,7 @@ func _input(event):
 			if plant_to_harvest:
 				if plant_to_harvest.current_stage >= plant_to_harvest.data.growth_stages.size() - 1:
 					plant_to_harvest.harvest()
+					
 			else:
 				if planting_manager.can_plant_here(mouse_tile):
 				# Only plant if no crop was found at this tile
@@ -210,6 +212,7 @@ func _input(event):
 						else: print("not a seed")
 		elif GameManager.selected_item["type"] == "watering can":
 			$Map.water_square()
+
 	if event.is_action_pressed(("left_click")):
 		if GameManager.selected_item!={} and GameManager.selected_item["type"]=="hoe":
 			if ground_layer.get_cell_source_id(mouse_tile)==0:

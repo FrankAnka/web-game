@@ -3,6 +3,9 @@ extends Node2D
 @onready var ground=$Ground
 @onready var player=$"../Player"
 
+
+
+
 func hoe_square():
 		var mouse_pos = get_global_mouse_position()
 		var tile_pos = ground.local_to_map(mouse_pos)
@@ -34,6 +37,6 @@ func water_square():
 	# .length() gives the Euclidean distance (a circle radius)
 	var distance = (tile_pos - player_tile).length()
 	
-	if distance <= 3.0 and GameManager.selected_item["type"] == "watering can":
+	if distance <= 3.0 and GameManager.selected_item["type"] == "watering can" and ground.get_cell_source_id(tile_pos)==1:
 		if tile_data:
 			ground.set_cell(tile_pos,2, Vector2i(0, 0))

@@ -1,17 +1,18 @@
 extends Node2D
 
 var inventory = {81:{"type":"hoe","count":1},82:{"type":"watering can","count":1},84:{"type":"cornseeds","count":3},85:{"type":"wheatseeds","count":3}}
-var money = 0
+var money = 100
 var inventory_slots = 20 # Total slots
 var max_stack = 999
 var held_item = null
 var inv_active = true
 var selected_slot:int = 1
 var selected_item={}
+var shop_ui: Control
 
 signal inventory_changed
 signal mouse_slot_updated
-
+signal shop_requested(items: Array)
 func add_item(item_name: String, amount: int):
 	item_name = item_name.to_lower()
 	# range(1, 21) will check slots 1 through 20
