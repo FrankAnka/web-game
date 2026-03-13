@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="ToolData" format=3 uid="uid://ddk1e22ebq8bk"]
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://b5fhmmvkol7xq"]
 
-[ext_resource type="Texture2D" uid="uid://7qdomv4ggglu" path="res://Assets/icons/watercan.png" id="1_abpab"]
-[ext_resource type="Script" uid="uid://30kuanvw723k" path="res://Scripts/ToolData.gd" id="1_c1077"]
+[ext_resource type="Texture2D" uid="uid://7qdomv4ggglu" path="res://Assets/icons/watering can.png" id="1_abpab"]
+[ext_resource type="Script" uid="uid://dwcm8wo77r7hn" path="res://Scripts/ItemData.gd" id="2_djuf6"]
 
 [resource]
-script = ExtResource("1_c1077")
-name = "Watering Can"
+script = ExtResource("2_djuf6")
+item_name = "Watering Can"
 icon = ExtResource("1_abpab")
-metadata/_custom_type_script = "uid://30kuanvw723k"
+is_tool = true
+description = "A simple can for watering your crops, Its not much but it works"
+metadata/_custom_type_script = "uid://dwcm8wo77r7hn"

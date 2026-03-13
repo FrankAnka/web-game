@@ -1,22 +1,31 @@
 extends Node2D
 
-var inventory = {81:{"type":"hoe","count":1},82:{"type":"watering can","count":1},84:{"type":"cornseeds","count":3},85:{"type":"wheatseeds","count":3}}
+var inventory = {81:{"type":"hoe","count":1},82:{"type":"watering can","count":1},84:{"type":"corn seeds","count":3},85:{"type":"wheat seeds","count":3}}
 var money = 100
-var inventory_slots = 20 # Total slots
 var max_stack = 999
 var held_item = null
 var inv_active = true
 var selected_slot:int = 1
 var selected_item={}
 var shop_ui: Control
+var held_item_origin_slot: int = -1
 
 signal inventory_changed
 signal mouse_slot_updated
-signal shop_requested(items: Array)
+signal money_changed(new_amount)
+
 func add_item(item_name: String, amount: int):
 	item_name = item_name.to_lower()
-	# range(1, 21) will check slots 1 through 20
-	for i in range(1, inventory_slots + 1):
+	
+	# Create an array of all valid slot IDs (1-80 for inventory, 81-89 for hotbar)
+	var all_slots = []
+	for i in range(1, 81):
+		all_slots.append(i)
+	for i in range(81, 90):
+		all_slots.append(i)
+		
+	# STEP 1: Attempt to stack with existing items first
+	for i in all_slots:
 		var slot = inventory.get(i)
 		if slot and slot["type"] == item_name and slot["count"] < max_stack:
 			var can_add = min(amount, max_stack - slot["count"])
@@ -24,39 +33,57 @@ func add_item(item_name: String, amount: int):
 			amount -= can_add
 			if amount <= 0: break
 			
+	# STEP 2: If we still have items left, find the first empty slot
 	if amount > 0:
-		for i in range(1, inventory_slots + 1):
-			if inventory.get(i) == null:
+		for i in all_slots:
+			if not inventory.has(i) or inventory[i] == null:
 				var can_add = min(amount, max_stack)
 				inventory[i] = {"type": item_name, "count": can_add}
 				amount -= can_add
 				if amount <= 0: break
+				
 	inventory_changed.emit()
 
 func pick_up_slot(slot_index: int):
 	if inventory.has(slot_index):
 		held_item = inventory[slot_index]
-		inventory[slot_index] = null
+		held_item_origin_slot = slot_index # Remember where it came from!
+		inventory.erase(slot_index) # Remove it from the original slot
 		inventory_changed.emit()
 		mouse_slot_updated.emit()
-
+		
 func drop_into_slot(slot_index: int):
 	if held_item == null: return
-	var slot_data = inventory.get(slot_index)
 	
-	if slot_data == null or slot_data["type"] != held_item["type"]:
-		var temp = slot_data
-		inventory[slot_index] = held_item
-		held_item = temp # Swap
-	else:
-		var space = max_stack - slot_data["count"]
+	var target_item = inventory.get(slot_index)
+	
+	# If the slot has an item of the SAME type, try to merge stacks
+	if target_item != null and target_item["type"] == held_item["type"]:
+		var space = max_stack - target_item["count"]
 		var transfer = min(space, held_item["count"])
+		
 		inventory[slot_index]["count"] += transfer
 		held_item["count"] -= transfer
-		if held_item["count"] <= 0: held_item = null
 		
+		# If we have leftover items that couldn't fit, put them back where they came from
+		if held_item["count"] > 0:
+			inventory[held_item_origin_slot] = held_item
+			
+	# If the slot is empty OR has a DIFFERENT item type, perform the swap
+	else:
+		inventory[slot_index] = held_item # Put held item in new slot
+		
+		# If there was an item already there, throw it back to the original slot
+		if target_item != null:
+			inventory[held_item_origin_slot] = target_item
+			
+	# Clear the cursor completely since the interaction is finished
+	held_item = null
+	held_item_origin_slot = -1
+	
 	inventory_changed.emit()
-	mouse_slot_updated.emit()
+	mouse_slot_updated.emit()		
+		
 func _input(event):
 	if event is InputEventKey and event.key_label in range(49,58):
 		match event.key_label:

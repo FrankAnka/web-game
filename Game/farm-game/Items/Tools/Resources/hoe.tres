@@ -1,10 +1,14 @@
-[gd_resource type="Resource" script_class="ToolData" format=3 uid="uid://d1cr6xbbc5lo7"]
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://d1cr6xbbc5lo7"]
 
-[ext_resource type="Script" uid="uid://30kuanvw723k" path="res://Scripts/ToolData.gd" id="1_2lh2m"]
+[ext_resource type="Script" uid="uid://dwcm8wo77r7hn" path="res://Scripts/ItemData.gd" id="1_2lh2m"]
 [ext_resource type="Texture2D" uid="uid://77prwr17e2kb" path="res://Assets/icons/hoe.png" id="1_mjgax"]
 
 [resource]
 script = ExtResource("1_2lh2m")
-name = "Hoe"
+item_name = "Hoe"
+cost = 50
+weight = 100
 icon = ExtResource("1_mjgax")
-metadata/_custom_type_script = "uid://30kuanvw723k"
+is_tool = true
+description = "Just a regular hoe, I dont know what you want from me, how do i write a description for this"
+metadata/_custom_type_script = "uid://dwcm8wo77r7hn"

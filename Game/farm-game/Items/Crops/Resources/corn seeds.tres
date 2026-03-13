@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bu0k61u7jh3ya"]
+
+[ext_resource type="Texture2D" uid="uid://b4xpjj2dbwktn" path="res://Assets/icons/corn seeds.png" id="1_42vo6"]
+[ext_resource type="Script" uid="uid://dwcm8wo77r7hn" path="res://Scripts/ItemData.gd" id="1_c54en"]
+
+[resource]
+script = ExtResource("1_c54en")
+item_name = "Corn Seeds"
+icon = ExtResource("1_42vo6")
+is_seed = true
+plant_to_place = "corn"
+description = "Regular corn seeds for planting"
+metadata/_custom_type_script = "uid://dwcm8wo77r7hn"

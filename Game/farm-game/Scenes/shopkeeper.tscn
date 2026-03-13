@@ -1,20 +1,24 @@
-[gd_scene format=3 uid="uid://dskxnukyq7pew"]
+[gd_scene format=3 uid="uid://bfotctnvqd00i"]
 
-[ext_resource type="Script" uid="uid://ckd3wit6vj1e" path="res://Scripts/shopkeeper.gd" id="1_1e8i3"]
+[ext_resource type="Script" uid="uid://du1x3k7gubxss" path="res://shopkeeper.gd" id="1_1e8i3"]
 [ext_resource type="Texture2D" uid="uid://bjy1ut5a1xkgo" path="res://Assets/temp shop.png" id="2_7scxg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fdy00"]
-size = Vector2(64, 64)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7scxg"]
 
-[node name="Shopkeeper" type="Node2D" unique_id=417678729]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fdy00"]
+
+[node name="Shopkeeper" type="CharacterBody2D" unique_id=2066653834]
 script = ExtResource("1_1e8i3")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=593281919]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1145944089]
 texture = ExtResource("2_7scxg")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1411861133]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1837599833]
+shape = SubResource("RectangleShape2D_7scxg")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2068207012]
+[node name="interact area" type="Area2D" parent="." unique_id=347293042]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interact area" unique_id=1933353289]
 shape = SubResource("RectangleShape2D_fdy00")
 
-[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="input_event" from="interact area" to="." method="_on_interact_area_input_event"]

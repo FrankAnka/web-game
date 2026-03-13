@@ -73,8 +73,13 @@ func _unhandled_input(event: InputEvent) -> void:
 				return_item_to_inventory()
 
 func return_item_to_inventory():
-	print(GameManager.held_item)
-	if GameManager.held_item!={}:
-		GameManager.add_item(GameManager.held_item["type"], GameManager.held_item["count"])
+	if GameManager.held_item != null:
+		# Put it exactly back where it came from
+		GameManager.inventory[GameManager.held_item_origin_slot] = GameManager.held_item
+		
+		# Clear the cursor data
 		GameManager.held_item = null
+		GameManager.held_item_origin_slot = -1
+		
+		GameManager.inventory_changed.emit()
 	# No need to manually emit, add_item does it!

@@ -32,6 +32,8 @@ project/assembly_name="Farm Game"
 player=""
 day_manager=""
 map=""
+ShopUI=""
+ShopSlot=""
 
 [input]
 

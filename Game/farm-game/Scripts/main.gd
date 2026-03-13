@@ -204,8 +204,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				# Only plant if no crop was found at this tile
 					if GameManager.selected_item.is_empty() !=true:
 						if GameManager.selected_item["type"].contains("seed"):
-							var crop_to_plant = GameManager.selected_item["type"].replace("seeds","")
-							print("crop",crop_to_plant)
+							var crop_to_plant = GameManager.selected_item["type"].replace("seeds","").replace(" ","")
 							planting_manager.plant_crop(mouse_tile,crop_library[crop_to_plant])
 							GameManager.selected_item["count"]-=1
 							GameManager.inventory_changed.emit()

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://b1twpxvx3po3j"]
+
+[ext_resource type="Texture2D" uid="uid://b4xpjj2dbwktn" path="res://Assets/icons/corn seeds.png" id="1_5vyfs"]
+[ext_resource type="Script" uid="uid://dwcm8wo77r7hn" path="res://Scripts/ItemData.gd" id="1_b6qet"]
+
+[resource]
+script = ExtResource("1_b6qet")
+item_name = "Wheat Seeds"
+icon = ExtResource("1_5vyfs")
+is_seed = true
+plant_to_place = "wheat"
+description = "Regular Wheat seeds for planting"
+metadata/_custom_type_script = "uid://dwcm8wo77r7hn"
