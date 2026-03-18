@@ -214,5 +214,5 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if event.is_action_pressed(("left_click")):
 		if GameManager.selected_item!={} and GameManager.selected_item["type"]=="hoe":
-			if ground_layer.get_cell_source_id(mouse_tile)==0:
 				$Map.hoe_square()
+				

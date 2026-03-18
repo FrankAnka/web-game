@@ -21,6 +21,7 @@ func hoe_square():
 		var distance = (tile_pos - player_tile).length()
 		
 		if distance <= 3.0:
+			print(tile_data.get_custom_data("can_hoe"))
 			if tile_data and tile_data.get_custom_data("can_hoe"):
 				ground.set_cell(tile_pos,1, Vector2i(0, 0))
 
