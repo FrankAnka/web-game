@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RecipeData" format=3 uid="uid://utw4plh2yvv"]
+
+[ext_resource type="Resource" uid="uid://d1cr6xbbc5lo7" path="res://Items/Tools/Resources/hoe.tres" id="1_o6dj4"]
+[ext_resource type="Script" uid="uid://cjsmbd5xpn1us" path="res://recipe_data.gd" id="2_7kmjw"]
+
+[resource]
+script = ExtResource("2_7kmjw")
+result_item = ExtResource("1_o6dj4")
+ingredients = {
+"corn": 1,
+"wheat": 1
+}
+metadata/_custom_type_script = "uid://cjsmbd5xpn1us"

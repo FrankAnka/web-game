@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://ck86sf31mhddd"]
+
+[ext_resource type="Script" uid="uid://bf7q74g44u46" path="res://recipe_ui_slot.gd" id="1_qkwsq"]
+
+[node name="Recipe Ui Slot" type="PanelContainer" unique_id=1887711801]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qkwsq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=66013444]
+layout_mode = 2
+
+[node name="Icon" type="TextureButton" parent="HBoxContainer" unique_id=730922988]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=889923261]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NameLabel" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1002477485]
+layout_mode = 2
+
+[node name="IngredientsLabel" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1193818018]
+layout_mode = 2
+
+[connection signal="pressed" from="HBoxContainer/Icon" to="." method="_on_icon_pressed"]

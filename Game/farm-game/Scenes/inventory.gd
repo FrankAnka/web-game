@@ -6,6 +6,16 @@ extends Control
 @onready var grid: GridContainer = $PanelContainer/Background/GridContainer
 @onready var label: Label = $PanelContainer2/Label
 
+
+@onready var tools_grid = $TabContainer/Personal
+@onready var seeds_grid = $TabContainer/Building
+
+# We will create this scene in the next step!
+@export var recipe_ui_scene: PackedScene 
+
+# Load all your .tres recipe files into this array in the inspector
+@export var all_recipes: Array[RecipeData] = []
+
 const TOTAL_SLOTS = 80
 const hotbar_slots = 9
 var slots = []
@@ -13,6 +23,7 @@ var slots = []
  
 
 func _ready():
+	populate_crafting_menu()
 	if GameManager.has_signal("inventory_changed"):
 		GameManager.inventory_changed.connect(refresh_ui)
 
@@ -83,3 +94,25 @@ func return_item_to_inventory():
 		
 		GameManager.inventory_changed.emit()
 	# No need to manually emit, add_item does it!
+
+
+func populate_crafting_menu():
+	# Clear out any placeholder slots
+	for child in tools_grid.get_children():
+		child.queue_free()
+	for child in seeds_grid.get_children():
+		child.queue_free()
+		
+	# Spawn a UI slot for every recipe and put it in the right tab
+	for recipe in all_recipes:
+		var recipe_slot = recipe_ui_scene.instantiate()
+		
+		# Sort into the correct GridContainer based on the enum we made
+		match recipe.category:
+			"Tools":
+				tools_grid.add_child(recipe_slot)
+			"Seeds":
+				seeds_grid.add_child(recipe_slot)
+				
+		#pass the recipe data to the slot so it knows what to display
+		recipe_slot.setup(recipe)

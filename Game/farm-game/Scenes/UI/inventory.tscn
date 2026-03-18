@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://ds6povkuuoycc"]
 
 [ext_resource type="Script" uid="uid://b2vv5f5s3ki35" path="res://Scenes/inventory.gd" id="1_s6m5x"]
+[ext_resource type="PackedScene" uid="uid://ck86sf31mhddd" path="res://Scenes/UI/recipe_ui_slot.tscn" id="2_ic2qw"]
+[ext_resource type="Script" uid="uid://cjsmbd5xpn1us" path="res://recipe_data.gd" id="2_osrsm"]
+[ext_resource type="Resource" uid="uid://utw4plh2yvv" path="res://Items/Recipes/wooden_hoe_recipe.tres" id="3_ic2qw"]
 
 [node name="InventoryUI" type="Control" unique_id=737029227]
 layout_mode = 3
@@ -11,6 +14,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_s6m5x")
+recipe_ui_scene = ExtResource("2_ic2qw")
+all_recipes = Array[ExtResource("2_osrsm")]([ExtResource("3_ic2qw")])
 
 [node name="Hotbar" type="PanelContainer" parent="." unique_id=1467997763]
 layout_mode = 1
@@ -62,13 +67,13 @@ size_flags_horizontal = 8
 current_tab = 1
 drag_to_rearrange_enabled = true
 
-[node name="GridContainer" type="GridContainer" parent="TabContainer" unique_id=1910846353]
+[node name="Personal" type="GridContainer" parent="TabContainer" unique_id=1910846353]
 visible = false
 layout_mode = 2
 columns = 3
 metadata/_tab_index = 0
 
-[node name="GridContainer2" type="GridContainer" parent="TabContainer" unique_id=769576373]
+[node name="Building" type="GridContainer" parent="TabContainer" unique_id=769576373]
 layout_mode = 2
 columns = 3
 metadata/_tab_index = 1

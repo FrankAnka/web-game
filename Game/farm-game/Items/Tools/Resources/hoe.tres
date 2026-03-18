@@ -11,4 +11,5 @@ weight = 100
 icon = ExtResource("1_mjgax")
 is_tool = true
 description = "Just a regular hoe, I dont know what you want from me, how do i write a description for this"
+rarity = 3
 metadata/_custom_type_script = "uid://dwcm8wo77r7hn"
