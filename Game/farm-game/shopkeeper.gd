@@ -41,5 +41,4 @@ func generate_inventory():
 # Connect the Area2D's input_event signal to this function
 func _on_interact_area_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-		print("open shop pls")
 		get_tree().call_group("ShopUI", "open_shop", current_inventory)

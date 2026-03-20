@@ -19,8 +19,8 @@ extends Control
 const TOTAL_SLOTS = 80
 const hotbar_slots = 9
 var slots = []
-
- 
+var current_mode = "normal"
+var shop_node: Node2D = null
 
 func _ready():
 	populate_crafting_menu()
@@ -60,7 +60,7 @@ func refresh_ui():
 				# Pass the dictionary {"type": "corn", "count": 999} to the slot
 				slot_ui.update_slot(item_resource, data["count"])
 			else:
-				var item_resource = load("res://Items/Tools/Resources/" + data["type"] + ".tres")
+				var item_resource = load("res://Items/Items/Resources/" + data["type"] + ".tres")
 				slot_ui.update_slot(item_resource, data["count"])
 
 		else:
@@ -68,10 +68,7 @@ func refresh_ui():
 			
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory"):
-		$PanelContainer.visible = !$PanelContainer.visible
-		$TabContainer.visible = !$TabContainer.visible
-		GameManager.inv_active = !GameManager.inv_active
-		if visible: refresh_ui()
+		openClose("normal")
 
 	# If we release the mouse and still have a held_item, Godot's 
 	# drag-and-drop 'failed' because it didn't land on a slot.
@@ -116,3 +113,62 @@ func populate_crafting_menu():
 				
 		#pass the recipe data to the slot so it knows what to display
 		recipe_slot.setup(recipe)
+		
+func attempt_sell(slot_index: int, start_pos: Vector2, item_texture: Texture2D):
+	if current_mode == "sell":
+		var data = GameManager.inventory.get(slot_index)
+		if data:
+			# 1. Handle the actual logic (money and removing item)
+			# GameManager.money += 10 # (Add your money logic here)
+			
+			data["count"] -= 1
+			if data["count"] <= 0:
+				GameManager.inventory.erase(slot_index)
+			
+			GameManager.inventory_changed.emit()
+			
+			# 2. Trigger the visual effect!
+			throw_item_into_hole(start_pos, item_texture)
+
+	
+func openClose(mode: String, shop: Node2D = null):
+	current_mode = mode
+	shop_node = shop # Save the hole node so we know where to throw items!
+	
+	$PanelContainer.visible = !$PanelContainer.visible
+	$TabContainer.visible = !$TabContainer.visible
+	GameManager.inv_active = !GameManager.inv_active
+	if visible: refresh_ui()
+
+func throw_item_into_hole(start_pos: Vector2, item_texture: Texture2D):
+	if shop_node == null: return
+	
+	# 1. Create a temporary visual copy of the item
+	var falling_item = TextureRect.new()
+	falling_item.texture = item_texture
+	falling_item.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	falling_item.custom_minimum_size = Vector2(40, 40) # Adjust to match your slot icon size
+	falling_item.global_position = start_pos
+	
+	# Add it to the UI canvas so it renders on top of everything
+	add_child(falling_item)
+	
+	# 2. Get the screen position of the shopkeeper/hole
+	# Because the shop is a Node2D in the world, and the UI is on the screen,
+	# we use this function to get its exact screen coordinates.
+	var target_pos = shop_node.get_global_transform_with_canvas().origin
+	
+	# 3. Animate it using a Tween
+	var tween = create_tween()
+	
+	# Move it to the hole (takes 0.4 seconds)
+	tween.tween_property(falling_item, "global_position", target_pos, 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	
+	# Shrink it to 10% size so it looks like it's falling down deep (runs at the same time)
+	tween.parallel().tween_property(falling_item, "scale", Vector2(0.8, 0.8), 0.4)
+	
+	# Spin it around a bit for fun!
+	tween.parallel().tween_property(falling_item, "rotation", 5.0, 0.4)
+	
+	# Delete the temporary image when the animation finishes
+	tween.tween_callback(falling_item.queue_free)

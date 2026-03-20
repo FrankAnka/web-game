@@ -20,12 +20,11 @@ func open_shop(inventory_data: Array):
 		var new_slot = shop_slot_scene.instantiate()
 		slot_container.add_child(new_slot)
 		new_slot.setup(data)
-		
+	
 	panel.show()
 
 func close_shop():
 	panel.hide()
-
 # This function listens for keyboard/mouse inputs
 func _input(event):
 	# Only listen for the Tab key if the shop is actually open

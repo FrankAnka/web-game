@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cjsmbd5xpn1us" path="res://recipe_data.gd" id="2_osrsm"]
 [ext_resource type="Resource" uid="uid://utw4plh2yvv" path="res://Items/Recipes/wooden_hoe_recipe.tres" id="3_ic2qw"]
 
-[node name="InventoryUI" type="Control" unique_id=737029227]
+[node name="InventoryUI" type="Control" unique_id=737029227 groups=["Inventory"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

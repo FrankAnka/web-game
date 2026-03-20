@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cln88jqvujokx"]
+
+[ext_resource type="Script" uid="uid://dg62uq8pwif0y" path="res://sell_hole.gd" id="1_8puqk"]
+[ext_resource type="Texture2D" uid="uid://bei3cffbpy8lm" path="res://Assets/Hole.png" id="2_8puqk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3yq80"]
+size = Vector2(180, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6158c"]
+size = Vector2(180, 100)
+
+[node name="SellHole" type="StaticBody2D" unique_id=416963490]
+script = ExtResource("1_8puqk")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1375412446]
+texture = ExtResource("2_8puqk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1306066997]
+shape = SubResource("RectangleShape2D_3yq80")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1368153407]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1965484494]
+shape = SubResource("RectangleShape2D_6158c")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

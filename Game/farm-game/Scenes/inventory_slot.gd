@@ -56,6 +56,17 @@ func update_slot(item_data = null, amount = 0):
 		modulate = Color(0.463, 0.463, 0.463, 1.0)
 	else:
 		modulate = Color(1, 1, 1)
+
+# ---  SELL ---
+
+func _gui_input(event: InputEvent) -> void:
+	# Listen for the right mouse button while hovering this slot
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+		var inventory_node = get_tree().get_first_node_in_group("Inventory")
+		if inventory_node:
+			# Pass the slot index, its screen position, and the item's picture
+			inventory_node.attempt_sell(slot_index, global_position, icon.texture)
+			
 # --- THE BUILT-IN SYSTEM ---
 
 func _get_drag_data(_at_position):
@@ -82,9 +93,9 @@ func _can_drop_data(_at_position, _data):
 func _drop_data(_at_position, _data):
 	# This runs automatically when you release the mouse over this slot
 	if GameManager.inv_active:
-
 		print("Drop detected on slot: ", slot_index)
 		GameManager.drop_into_slot(slot_index)
+
 
 # --- HOVER VISUALS ---
 
