@@ -1,6 +1,6 @@
 extends Control
 
-@export var slot_scene: PackedScene = preload("res://Scenes/UI/inventory_slot.tscn")
+@onready var slot_scene: PackedScene = preload("res://Scenes/UI/inventory_slot.tscn")
 
 @onready var hotbar_grid: GridContainer = $Hotbar/Background/GridContainer
 @onready var grid: GridContainer = $PanelContainer/Background/GridContainer
@@ -55,13 +55,11 @@ func refresh_ui():
 				slot_ui.update_slot(null,0)
 				GameManager.inventory.erase(slot_index)
 				print(GameManager.inventory)
-			elif data["type"] != "watering can" and data["type"]!="hoe":
-				var item_resource = load("res://Items/Crops/Resources/" + data["type"] + ".tres")
-				# Pass the dictionary {"type": "corn", "count": 999} to the slot
-				slot_ui.update_slot(item_resource, data["count"])
 			else:
 				var item_resource = load("res://Items/Items/Resources/" + data["type"] + ".tres")
+				# Pass the dictionary {"type": "corn", "count": 999} to the slot
 				slot_ui.update_slot(item_resource, data["count"])
+
 
 		else:
 			slot_ui.update_slot(null, 0)
@@ -117,10 +115,12 @@ func populate_crafting_menu():
 func attempt_sell(slot_index: int, start_pos: Vector2, item_texture: Texture2D):
 	if current_mode == "sell":
 		var data = GameManager.inventory.get(slot_index)
+		
+		
 		if data:
+			var resource = load("res://Items/Items/Resources/" + data["type"]+".tres")
 			# 1. Handle the actual logic (money and removing item)
-			# GameManager.money += 10 # (Add your money logic here)
-			
+			GameManager.money+= resource.cost
 			data["count"] -= 1
 			if data["count"] <= 0:
 				GameManager.inventory.erase(slot_index)

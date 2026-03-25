@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxn5lc2h3sdm1"
-path="res://.godot/imported/Red.png-2e2db45779429b3530bee93016197519.ctex"
+uid="uid://bnx718ighktau"
+path="res://.godot/imported/Tilemap.png-00c579ad2413a921509c4c69aa7f2feb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/Crops/Textures/Red.png"
-dest_files=["res://.godot/imported/Red.png-2e2db45779429b3530bee93016197519.ctex"]
+source_file="res://Assets/Terrain/Tilemap.png"
+dest_files=["res://.godot/imported/Tilemap.png-00c579ad2413a921509c4c69aa7f2feb.ctex"]
 
 [params]
 

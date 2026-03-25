@@ -2,7 +2,7 @@ extends Node2D
 
 # 1. Load the generic template and the specific crop data
 var crop_scene = preload("res://Scenes/Presets/crop_preset.tscn")
-var corn_resource = preload("res://Items/Crops/Resources/corn.tres")
+
 
 @onready var tile_map: Node2D = $"../Map/Ground"
 @onready var crop_container: Node2D = $"../Crops" # A folder node to keep the scene tree clean

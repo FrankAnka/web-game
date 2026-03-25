@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkbftpi41w0j2"
-path="res://.godot/imported/Dirt and Grass.png-b7a2e798c8786c4ff95d2b039d0c39d4.ctex"
+uid="uid://cxn5lc2h3sdm1"
+path="res://.godot/imported/Red.png-353110e1e0a041762e9e200061722606.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Terrain/Dirt and Grass.png"
-dest_files=["res://.godot/imported/Dirt and Grass.png-b7a2e798c8786c4ff95d2b039d0c39d4.ctex"]
+source_file="res://Items/Items/Textures/Red.png"
+dest_files=["res://.godot/imported/Red.png-353110e1e0a041762e9e200061722606.ctex"]
 
 [params]
 

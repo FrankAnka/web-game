@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cqg4uennabjgk"]
 
-[ext_resource type="Script" uid="uid://i4a4u0kcikxo" path="res://Scenes/UI/shop_slot_ui.gd" id="1_h6lid"]
+[ext_resource type="Script" uid="uid://i4a4u0kcikxo" path="res://Scripts/shop_slot_ui.gd" id="1_h6lid"]
 
 [node name="Shop Slot" type="HBoxContainer" unique_id=1226422781 groups=["ShopSlot"]]
 script = ExtResource("1_h6lid")

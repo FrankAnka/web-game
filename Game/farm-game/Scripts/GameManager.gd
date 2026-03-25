@@ -13,7 +13,6 @@ var held_item_origin_slot: int = -1
 signal inventory_changed
 signal mouse_slot_updated
 signal money_changed(new_amount)
-
 func add_item(item_name: String, amount: int):
 	item_name = item_name.to_lower()
 	
