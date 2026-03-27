@@ -21,9 +21,10 @@ func _on_day_changed(_new_day_number):
 	var ground = map.get_child(0)
 	var tile_pos=ground.local_to_map(global_position)
 	if data.req_water==true:
-		if ground.get_cell_source_id(tile_pos) == 2:
+		if ground.get_cell_tile_data(tile_pos).get_custom_data("is_watered"):
 			days_planted += 1
-			ground.set_cell(tile_pos,1,Vector2i(0,0))
+			var atlas_coord = ground.get_cell_atlas_coords(tile_pos)
+			ground.set_cell(tile_pos,0,atlas_coord-Vector2i(6,0))
 	
 	# Logic: If the plant should grow every days_to_grow days
 	if days_planted % data.days_to_grow == 0:

@@ -9,10 +9,12 @@ var selected_slot:int = 1
 var selected_item={}
 var shop_ui: Control
 var held_item_origin_slot: int = -1
-
+@export var tier_req = {1:{1:{},2:{}},2:{},3:{}} # with the required items to be sold to advance to a higher tier, formatted as tier:{"itemname:"amount,}
+var current_tier = 0
 signal inventory_changed
 signal mouse_slot_updated
 signal money_changed(new_amount)
+
 func add_item(item_name: String, amount: int):
 	item_name = item_name.to_lower()
 	
