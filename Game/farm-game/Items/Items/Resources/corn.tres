@@ -10,6 +10,7 @@
 script = ExtResource("1_v80qe")
 plant_name = "Corn"
 growth_stages = Array[Texture2D]([ExtResource("1_nx8ce"), ExtResource("2_1sce0"), ExtResource("3_7dwi2")])
+cost = 20
 req_water = true
 icon = ExtResource("3_5auhw")
 metadata/_custom_type_script = "uid://gb7qjv4bugie"

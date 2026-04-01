@@ -9,6 +9,7 @@
 script = ExtResource("1_3qd2w")
 plant_name = "wheat"
 growth_stages = Array[Texture2D]([ExtResource("1_tw158"), ExtResource("2_tw158")])
+cost = 20
 req_water = true
 icon = ExtResource("3_j51cc")
 metadata/_custom_type_script = "uid://gb7qjv4bugie"

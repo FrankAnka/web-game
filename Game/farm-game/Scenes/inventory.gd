@@ -22,6 +22,8 @@ var slots = []
 var current_mode = "normal"
 var shop_node: Node2D = null
 
+signal tier_up(new_tier)
+
 func _ready():
 	populate_crafting_menu()
 	if GameManager.has_signal("inventory_changed"):
@@ -113,19 +115,54 @@ func populate_crafting_menu():
 		recipe_slot.setup(recipe)
 		
 func attempt_sell(slot_index: int, start_pos: Vector2, item_texture: Texture2D):
+	
 	if current_mode == "sell":
 		var data = GameManager.inventory.get(slot_index)
-		
+		var next_tier = GameManager.tier_req[GameManager.current_tier+1]
 		
 		if data:
 			var resource = load("res://Items/Items/Resources/" + data["type"]+".tres")
-			# 1. Handle the actual logic (money and removing item)
 			GameManager.money+= resource.cost
 			data["count"] -= 1
 			if data["count"] <= 0:
 				GameManager.inventory.erase(slot_index)
 			
 			GameManager.inventory_changed.emit()
+			
+		
+			if GameManager.cur_tier_sold.has(data["type"]):
+							GameManager.cur_tier_sold[data["type"]] += 1
+			else:
+				GameManager.cur_tier_sold[data["type"]] = 1
+				
+			# 2. Check if a next tier actually exists
+			if GameManager.tier_req.has(GameManager.current_tier + 1):
+				var next_tier_req = GameManager.tier_req[GameManager.current_tier + 1]
+				var tier_completed = true
+				
+				# 3. Verify if current progress meets ALL requirements for the next tier
+				for req_key in next_tier_req:
+					var req = next_tier_req[req_key]
+					var req_type = req["type"]
+					var req_amount_needed = req["count"]
+					
+					# Get amount sold (defaults to 0 if the item hasn't been sold at all yet)
+					var amount_sold = GameManager.cur_tier_sold.get(req_type, 0)
+					if amount_sold < req_amount_needed:
+						tier_completed = false
+						break # One requirement failed, so stop checking the rest
+				
+				# 4. If everything was met, level up the tier!
+				if tier_completed:
+					GameManager.current_tier+=1
+					GameManager.cur_tier_sold.clear() # Reset progress for the new tier!
+					get_tree().call_group("Progress", "build_ui")
+				else:
+					# JUST UPDATE: The tier didn't change, so just update the numbers on the current boxes
+					get_tree().call_group("Progress", "update_all_boxes")
+
+			# (money and removing item)
+			
 			
 			# 2. Trigger the visual effect!
 			throw_item_into_hole(start_pos, item_texture)

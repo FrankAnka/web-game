@@ -1,6 +1,6 @@
 extends Node2D
 
-var inventory = {81:{"type":"hoe","count":1},82:{"type":"watering can","count":1},84:{"type":"corn seeds","count":3},85:{"type":"wheat seeds","count":3}}
+var inventory = {1:{"type":"corn","count":21},81:{"type":"hoe","count":1},82:{"type":"watering can","count":1},84:{"type":"corn seeds","count":3},85:{"type":"wheat seeds","count":3}}
 var money = 100
 var max_stack = 999
 var held_item = null
@@ -9,12 +9,15 @@ var selected_slot:int = 1
 var selected_item={}
 var shop_ui: Control
 var held_item_origin_slot: int = -1
-@export var tier_req = {1:{1:{},2:{}},2:{},3:{}} # with the required items to be sold to advance to a higher tier, formatted as tier:{"itemname:"amount,}
+@export var tier_req = {1:{1:{"type":"corn","count":10},2:{"type":"wheat","count":8}},2:{1:{"type":"corn","count":999}},3:{}} # with the required items to be sold to advance to a higher tier, formatted as tier:{"itemname:"amount,}
 var current_tier = 0
+var cur_tier_sold = {}
+
 signal inventory_changed
 signal mouse_slot_updated
 signal money_changed(new_amount)
-
+	
+	
 func add_item(item_name: String, amount: int):
 	item_name = item_name.to_lower()
 	
@@ -111,3 +114,6 @@ func _input(event):
 		else:
 			selected_item={}
 		inventory_changed.emit()
+
+
+ 
