@@ -19,13 +19,15 @@ func _ready():
 func _on_day_changed(_new_day_number):
 	var map = get_tree().get_first_node_in_group("map")
 	var ground = map.get_child(0)
-	var tile_pos=ground.local_to_map(global_position)
-	if data.req_water==true:
-		if ground.get_cell_tile_data(tile_pos).get_custom_data("is_watered"):
+	var tile_pos = ground.local_to_map(ground.to_local(global_position))
+	var tile_data = ground.get_cell_tile_data(tile_pos)
+	
+	if data.req_water == true and tile_data:
+		if tile_data.get_custom_data("is_watered"):
 			days_planted += 1
 			var atlas_coord = ground.get_cell_atlas_coords(tile_pos)
-			ground.set_cell(tile_pos,0,atlas_coord-Vector2i(6,0))
-	
+			# Shift atlas to 'unwatered' visual (assuming -6 on X axis)
+			ground.set_cell(tile_pos, 0, atlas_coord - Vector2i(6, 0))
 	# Logic: If the plant should grow every days_to_grow days
 	if days_planted % data.days_to_grow == 0:
 		if current_stage < data.growth_stages.size() - 1:

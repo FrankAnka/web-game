@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CropData" format=3 uid="uid://dwc6wlnjp2xk1"]
+
+[ext_resource type="Texture2D" uid="uid://cpt5rjl3sxb8t" path="res://Assets/Farm Game.apple-touch-icon.png" id="1_vsb76"]
+[ext_resource type="Texture2D" uid="uid://b4xpjj2dbwktn" path="res://Assets/icons/corn seeds.png" id="2_ttkdx"]
+[ext_resource type="Texture2D" uid="uid://cfnedse76gf2i" path="res://Items/Items/Textures/Greeen.png" id="3_cilyv"]
+[ext_resource type="Script" uid="uid://gb7qjv4bugie" path="res://Scripts/CropData.gd" id="4_chq47"]
+
+[resource]
+script = ExtResource("4_chq47")
+plant_name = "Shadevine"
+growth_stages = Array[Texture2D]([ExtResource("1_vsb76"), ExtResource("2_ttkdx")])
+cost = 20
+req_water = true
+icon = ExtResource("3_cilyv")
+metadata/_custom_type_script = "uid://gb7qjv4bugie"

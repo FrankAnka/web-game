@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CropData" format=3 uid="uid://bya1lex7t5bsp"]
+
+[ext_resource type="Texture2D" uid="uid://cxn5lc2h3sdm1" path="res://Items/Items/Textures/Red.png" id="1_6cup4"]
+[ext_resource type="Texture2D" uid="uid://d0j82htw4735k" path="res://Items/Items/Textures/Blue.png" id="2_r4ibv"]
+[ext_resource type="Texture2D" uid="uid://cfnedse76gf2i" path="res://Items/Items/Textures/Greeen.png" id="3_el16h"]
+[ext_resource type="Texture2D" uid="uid://oakxc1u4lb0g" path="res://Assets/icons/Corn.png" id="4_tjir3"]
+[ext_resource type="Script" uid="uid://gb7qjv4bugie" path="res://Scripts/CropData.gd" id="5_u23oi"]
+
+[resource]
+script = ExtResource("5_u23oi")
+plant_name = "Thornshade"
+growth_stages = Array[Texture2D]([ExtResource("1_6cup4"), ExtResource("2_r4ibv"), ExtResource("3_el16h")])
+cost = 20
+req_water = true
+icon = ExtResource("4_tjir3")
+metadata/_custom_type_script = "uid://gb7qjv4bugie"

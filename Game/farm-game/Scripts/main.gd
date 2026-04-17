@@ -7,8 +7,9 @@ extends Node2D
 @onready var crop_container = $Crops
 
 @export var crop_library: Dictionary = {
-	"corn": preload("res://Items/Items/Resources/corn.tres"),
-	"wheat":preload("res://Items/Items/Resources/wheat.tres")
+	"thornshade": preload("res://Items/Items/Resources/thornshade.tres"),
+	"shadevine":preload("res://Items/Items/Resources/shadevine.tres"),
+	
 }
 
 #Creating data
@@ -183,19 +184,22 @@ func _on_button_2_button_down() -> void:
 #Harvesting/interacting
 func _unhandled_input(event: InputEvent) -> void:
 	
-	var mouse_tile = ground_layer.local_to_map(get_global_mouse_position())
+	var mouse_tile = ground_layer.local_to_map(ground_layer.to_local(get_global_mouse_position()))
+
 	if event.is_action_pressed("right_click"):
-		print("right")
-		# 1. Look for a plant at this tile FIRST
-		if GameManager.selected_item.is_empty() ||GameManager.selected_item["type"] != "watering can" :
-			var plant_to_harvest = null	
+		# Ensure we aren't using the watering can
+		if GameManager.selected_item.is_empty() or GameManager.selected_item["type"] != "watering can":
+			var plant_to_harvest = null    
+			
 			for crop in crop_container.get_children():
-				if ground_layer.local_to_map(crop.global_position) == mouse_tile:
+				var crop_local_pos = ground_layer.to_local(crop.global_position)
+				var crop_tile = ground_layer.local_to_map(crop_local_pos)
+				if crop_tile == mouse_tile:
 					plant_to_harvest = crop
 					break
-			
-			# 2. Decide: Harvest or Plant?
+		
 			if plant_to_harvest:
+				# Check if the crop is fully grown (last stage of growth)
 				if plant_to_harvest.current_stage >= plant_to_harvest.data.growth_stages.size() - 1:
 					plant_to_harvest.harvest()
 					

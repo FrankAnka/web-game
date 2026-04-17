@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-@export var possible_items: Array[ItemData]
+@export var possible_items: Array[Array]
+var possibleItems
 @export var shop_slots: int = 5
 
 var current_inventory: Array[Dictionary] = []
@@ -10,7 +11,8 @@ func _ready():
 
 func generate_inventory():
 	var total_weight: int = 0
-	for item in possible_items:
+	possibleItems = possible_items[GameManager.current_tier]
+	for item in possibleItems:
 		total_weight += item.weight
 		
 	for i in range(shop_slots):
@@ -18,7 +20,7 @@ func generate_inventory():
 		var picked_item: ItemData = null
 		
 		# Weighted random pick
-		for item in possible_items:
+		for item in possibleItems:
 			roll -= item.weight
 			if roll <= 0:
 				picked_item = item

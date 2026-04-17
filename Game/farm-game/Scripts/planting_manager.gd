@@ -8,17 +8,15 @@ var crop_scene = preload("res://Scenes/Presets/crop_preset.tscn")
 @onready var crop_container: Node2D = $"../Crops" # A folder node to keep the scene tree clean
 @onready var player = $"../Player"
 func plant_crop(tile_pos: Vector2i, crop_data: CropData):
-	# 2. Create an instance of the template
 	var new_crop = crop_scene.instantiate()
-	# 3. Inject the specific data (Corn, Wheat, etc.)
 	new_crop.data = crop_data
-	
-	# 4. Position it based on the TileMap grid
-	# Centering it on the tile:
-	var world_pos = tile_map.map_to_local(tile_pos)
-	new_crop.global_position = world_pos
-	
-	# 5. Add it to the world
+
+	# 1. Get the local position inside the TileMap
+	var local_pos = tile_map.map_to_local(tile_pos)
+
+	# 2. Convert that local position to a GLOBAL position
+	new_crop.global_position = tile_map.to_global(local_pos)
+
 	crop_container.add_child(new_crop)
 	return new_crop
 

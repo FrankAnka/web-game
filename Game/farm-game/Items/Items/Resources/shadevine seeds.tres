@@ -5,9 +5,9 @@
 
 [resource]
 script = ExtResource("1_b6qet")
-item_name = "Wheat Seeds"
+item_name = "Shadevine Seeds"
 icon = ExtResource("1_5vyfs")
 is_seed = true
-plant_to_place = "wheat"
-description = "Regular Wheat seeds for planting"
+plant_to_place = "shadevine"
+description = "seeds"
 metadata/_custom_type_script = "uid://dwcm8wo77r7hn"

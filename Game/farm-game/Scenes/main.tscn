@@ -13,17 +13,20 @@
 [ext_resource type="PackedScene" uid="uid://caahrv3agmse" path="res://Scenes/UI/shop_window.tscn" id="10_hptm8"]
 [ext_resource type="Script" uid="uid://dwcm8wo77r7hn" path="res://Scripts/ItemData.gd" id="10_jkdf5"]
 [ext_resource type="Texture2D" uid="uid://77prwr17e2kb" path="res://Assets/icons/hoe.png" id="11_wsu2k"]
-[ext_resource type="Resource" uid="uid://b1twpxvx3po3j" path="res://Items/Items/Resources/wheat seeds.tres" id="12_k12tt"]
-[ext_resource type="Resource" uid="uid://bu0k61u7jh3ya" path="res://Items/Items/Resources/corn seeds.tres" id="13_h1bgf"]
+[ext_resource type="Resource" uid="uid://b1twpxvx3po3j" path="res://Items/Items/Resources/shadevine seeds.tres" id="12_k12tt"]
+[ext_resource type="Resource" uid="uid://bu0k61u7jh3ya" path="res://Items/Items/Resources/thornshade seeds.tres" id="13_h1bgf"]
+[ext_resource type="Resource" uid="uid://b5fhmmvkol7xq" path="res://Items/Items/Resources/watering can.tres" id="15_h1bgf"]
 [ext_resource type="PackedScene" uid="uid://cln88jqvujokx" path="res://Scenes/sell_hole.tscn" id="15_wsu2k"]
 
-[sub_resource type="Resource" id="Resource_b3802"]
+[sub_resource type="Resource" id="Resource_k12tt"]
 script = ExtResource("10_jkdf5")
 item_name = "Hoe"
 cost = 50
 weight = 100
 icon = ExtResource("11_wsu2k")
 is_tool = true
+description = "Just a regular hoe, I dont know what you want from me, how do i write a description for this"
+rarity = 3
 metadata/_custom_type_script = "uid://dwcm8wo77r7hn"
 
 [node name="Main" type="Node2D" unique_id=437526742]
@@ -67,7 +70,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Shopkeeper" parent="." unique_id=2066653834 instance=ExtResource("9_hptm8")]
 position = Vector2(583, 209)
-possible_items = Array[ExtResource("10_jkdf5")]([SubResource("Resource_b3802"), ExtResource("12_k12tt"), ExtResource("13_h1bgf")])
+possible_items = Array[Array]([[SubResource("Resource_k12tt"), ExtResource("12_k12tt"), ExtResource("13_h1bgf")], [ExtResource("15_h1bgf")], []])
 
 [node name="Shop Window" parent="." unique_id=1665332404 instance=ExtResource("10_hptm8")]
 
