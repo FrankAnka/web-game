@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://dwcm8wo77r7hn" path="res://Scripts/ItemData.gd" id="10_jkdf5"]
 [ext_resource type="Texture2D" uid="uid://77prwr17e2kb" path="res://Assets/icons/hoe.png" id="11_wsu2k"]
 [ext_resource type="Resource" uid="uid://b1twpxvx3po3j" path="res://Items/Items/Resources/shadevine seeds.tres" id="12_k12tt"]
-[ext_resource type="Resource" uid="uid://bu0k61u7jh3ya" path="res://Items/Items/Resources/thornshade seeds.tres" id="13_h1bgf"]
+[ext_resource type="Resource" uid="uid://bu0k61u7jh3ya" path="res://Items/Items/Resources/thorneye seeds.tres" id="13_h1bgf"]
 [ext_resource type="Resource" uid="uid://b5fhmmvkol7xq" path="res://Items/Items/Resources/watering can.tres" id="15_h1bgf"]
 [ext_resource type="PackedScene" uid="uid://cln88jqvujokx" path="res://Scenes/sell_hole.tscn" id="15_wsu2k"]
 

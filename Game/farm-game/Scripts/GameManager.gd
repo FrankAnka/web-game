@@ -1,6 +1,6 @@
 extends Node2D
 
-var inventory = {1:{"type":"thornshade","count":21},81:{"type":"hoe","count":1},82:{"type":"watering can","count":1},84:{"type":"thornshade seeds","count":3},85:{"type":"shadevine seeds","count":3}}
+var inventory = {1:{"type":"thorneye","count":21},81:{"type":"hoe","count":1},82:{"type":"watering can","count":1},84:{"type":"thorneye seeds","count":3},85:{"type":"shadevine seeds","count":3}}
 var money = 100
 var max_stack = 999
 var held_item = null
@@ -9,7 +9,7 @@ var selected_slot:int = 1
 var selected_item={}
 var shop_ui: Control
 var held_item_origin_slot: int = -1
-@export var tier_req = {1:{1:{"type":"thornshade","count":10},2:{"type":"shadevine","count":8}},2:{1:{"type":"thornshade","count":999}},3:{}} # with the required items to be sold to advance to a higher tier, formatted as tier:{"itemname:"amount,}
+@export var tier_req = {1:{1:{"type":"thorneye","count":10},2:{"type":"shadevine","count":8}},2:{1:{"type":"thorneye","count":999}},3:{}} # with the required items to be sold to advance to a higher tier, formatted as tier:{"itemname:"amount,}
 var current_tier = 0
 var cur_tier_sold = {}
 

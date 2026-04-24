@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bu0k61u7jh3ya"]
 
-[ext_resource type="Texture2D" uid="uid://b4xpjj2dbwktn" path="res://Assets/icons/corn seeds.png" id="1_th1ev"]
+[ext_resource type="Texture2D" uid="uid://dhvqlo6da3t3n" path="res://Assets/icons/Thorneye Seeds.png" id="1_psm2o"]
 [ext_resource type="Script" uid="uid://dwcm8wo77r7hn" path="res://Scripts/ItemData.gd" id="2_h1fa2"]
 
 [resource]
 script = ExtResource("2_h1fa2")
-item_name = "Thornshade Seeds"
-icon = ExtResource("1_th1ev")
+item_name = "Thorneye Seeds"
+icon = ExtResource("1_psm2o")
 is_seed = true
 plant_to_place = "thornshade"
 description = "seeds"

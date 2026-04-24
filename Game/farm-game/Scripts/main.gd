@@ -7,7 +7,7 @@ extends Node2D
 @onready var crop_container = $Crops
 
 @export var crop_library: Dictionary = {
-	"thornshade": preload("res://Items/Items/Resources/thornshade.tres"),
+	"thorneye": preload("res://Items/Items/Resources/thorneye.tres"),
 	"shadevine":preload("res://Items/Items/Resources/shadevine.tres"),
 	
 }

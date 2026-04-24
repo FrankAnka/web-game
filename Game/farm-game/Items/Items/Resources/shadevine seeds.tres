@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://b1twpxvx3po3j"]
 
-[ext_resource type="Texture2D" uid="uid://dhgortya2yfv" path="res://Assets/icons/wheat seeds.png" id="1_5vyfs"]
 [ext_resource type="Script" uid="uid://dwcm8wo77r7hn" path="res://Scripts/ItemData.gd" id="1_b6qet"]
+[ext_resource type="Texture2D" uid="uid://bqd8pyi8c18eq" path="res://Assets/icons/Shadevine seeds.png" id="1_gs5vw"]
 
 [resource]
 script = ExtResource("1_b6qet")
 item_name = "Shadevine Seeds"
-icon = ExtResource("1_5vyfs")
+icon = ExtResource("1_gs5vw")
 is_seed = true
 plant_to_place = "shadevine"
 description = "seeds"
