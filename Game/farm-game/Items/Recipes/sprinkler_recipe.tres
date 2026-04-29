@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RecipeData" format=3 uid="uid://lklr47mrq5ph"]
+
+[ext_resource type="Resource" uid="uid://bsbd150ld7kiy" path="res://Items/Items/Resources/sprinkler.tres" id="1_h30c0"]
+[ext_resource type="Script" uid="uid://cjsmbd5xpn1us" path="res://recipe_data.gd" id="2_3oiff"]
+
+[resource]
+script = ExtResource("2_3oiff")
+result_item = ExtResource("1_h30c0")
+ingredients = {
+"shadevine": 2,
+"thornshade": 2
+}
+metadata/_custom_type_script = "uid://cjsmbd5xpn1us"

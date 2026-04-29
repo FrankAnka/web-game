@@ -58,6 +58,7 @@ func refresh_ui():
 				GameManager.inventory.erase(slot_index)
 				print(GameManager.inventory)
 			else:
+				print(data["type"])
 				var item_resource = load("res://Items/Items/Resources/" + data["type"] + ".tres")
 				# Pass the dictionary {"type": "corn", "count": 999} to the slot
 				slot_ui.update_slot(item_resource, data["count"])
@@ -71,7 +72,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		openClose("normal")
 
 	# If we release the mouse and still have a held_item, Godot's 
-	# drag-and-drop 'failed' because it didn't land on a slot.
+	# drag-and-drop 'failfed' because it didn't land on a slot.
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if not event.pressed and GameManager.held_item != null:
 			# Wait a tiny bit to see if _drop_data handled it
@@ -155,6 +156,7 @@ func attempt_sell(slot_index: int, start_pos: Vector2, item_texture: Texture2D):
 				# 4. If everything was met, level up the tier!
 				if tier_completed:
 					GameManager.current_tier+=1
+					GameManager.tier_up.emit()
 					GameManager.cur_tier_sold.clear() # Reset progress for the new tier!
 					get_tree().call_group("Progress", "build_ui")
 				else:

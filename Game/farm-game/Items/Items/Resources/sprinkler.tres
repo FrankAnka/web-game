@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bsbd150ld7kiy"]
+
+[ext_resource type="Texture2D" uid="uid://cxn5lc2h3sdm1" path="res://Items/Items/Textures/sprinkler.png" id="1_h01jf"]
+[ext_resource type="Script" uid="uid://dwcm8wo77r7hn" path="res://Scripts/ItemData.gd" id="2_xx81t"]
+
+[resource]
+script = ExtResource("2_xx81t")
+item_name = "Sprinkler"
+cost = 100
+weight = 70
+icon = ExtResource("1_h01jf")
+is_tool = true
+description = "A sprinkler"
+metadata/_custom_type_script = "uid://dwcm8wo77r7hn"

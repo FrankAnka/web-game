@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cxn5lc2h3sdm1"
-path="res://.godot/imported/Red.png-353110e1e0a041762e9e200061722606.ctex"
+path="res://.godot/imported/sprinkler.png-d48ff7b2bd04900bcefa79ac96dee74a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Items/Items/Textures/Red.png"
-dest_files=["res://.godot/imported/Red.png-353110e1e0a041762e9e200061722606.ctex"]
+source_file="res://Items/Items/Textures/sprinkler.png"
+dest_files=["res://.godot/imported/sprinkler.png-d48ff7b2bd04900bcefa79ac96dee74a.ctex"]
 
 [params]
 

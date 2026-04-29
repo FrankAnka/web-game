@@ -15,8 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://77prwr17e2kb" path="res://Assets/icons/hoe.png" id="11_wsu2k"]
 [ext_resource type="Resource" uid="uid://b1twpxvx3po3j" path="res://Items/Items/Resources/shadevine seeds.tres" id="12_k12tt"]
 [ext_resource type="Resource" uid="uid://bu0k61u7jh3ya" path="res://Items/Items/Resources/thorneye seeds.tres" id="13_h1bgf"]
+[ext_resource type="Resource" uid="uid://bsbd150ld7kiy" path="res://Items/Items/Resources/sprinkler.tres" id="15_fevyy"]
 [ext_resource type="Resource" uid="uid://b5fhmmvkol7xq" path="res://Items/Items/Resources/watering can.tres" id="15_h1bgf"]
 [ext_resource type="PackedScene" uid="uid://cln88jqvujokx" path="res://Scenes/sell_hole.tscn" id="15_wsu2k"]
+[ext_resource type="Resource" uid="uid://d1cr6xbbc5lo7" path="res://Items/Items/Resources/hoe.tres" id="16_hibaj"]
 
 [sub_resource type="Resource" id="Resource_k12tt"]
 script = ExtResource("10_jkdf5")
@@ -70,7 +72,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Shopkeeper" parent="." unique_id=2066653834 instance=ExtResource("9_hptm8")]
 position = Vector2(583, 209)
-possible_items = Array[Array]([[SubResource("Resource_k12tt"), ExtResource("12_k12tt"), ExtResource("13_h1bgf")], [ExtResource("15_h1bgf")], []])
+possible_items = Array[Array]([[SubResource("Resource_k12tt"), ExtResource("12_k12tt"), ExtResource("13_h1bgf")], [ExtResource("13_h1bgf"), ExtResource("12_k12tt"), ExtResource("15_fevyy"), ExtResource("16_hibaj"), ExtResource("15_h1bgf")], []])
 
 [node name="Shop Window" parent="." unique_id=1665332404 instance=ExtResource("10_hptm8")]
 

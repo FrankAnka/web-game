@@ -7,6 +7,7 @@ extends PanelContainer
 var slot_index: int = -1 
 
 func update_slot(item_data = null, amount = 0):
+	
 	if item_data == null or amount <= 0:
 		icon.visible = false
 		count_label.visible = false
@@ -32,9 +33,12 @@ func update_slot(item_data = null, amount = 0):
 		# 2. Get the item's name
 		var name_to_display = "Unknown Item"
 		if "item_name" in item_data:
+			print(item_data.item_name)
+			
 			name_to_display = str(item_data.item_name)
-		elif "name" in item_data:
-			name_to_display = str(item_data.name)
+			print("dis", name_to_display)
+		elif "plant_name" in item_data:
+			name_to_display = str(item_data.plant_name)
 			
 		# 3. Build the BBCode formatted tooltip string
 		var hover_text = ""

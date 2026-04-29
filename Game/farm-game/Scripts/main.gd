@@ -5,7 +5,8 @@ extends Node2D
 @onready var planting_manager: Node2D = $PlantingManager
 @onready var ground_layer = $Map.ground
 @onready var crop_container = $Crops
-
+var tools = ["watering can", "hoe","sprinkler"]
+var sprinkler_scene = preload("res://Items/Items/Resources/sprinkler.tscn")
 @export var crop_library: Dictionary = {
 	"thorneye": preload("res://Items/Items/Resources/thorneye.tres"),
 	"shadevine":preload("res://Items/Items/Resources/shadevine.tres"),
@@ -183,12 +184,12 @@ func _on_button_2_button_down() -> void:
 
 #Harvesting/interacting
 func _unhandled_input(event: InputEvent) -> void:
-	
+	var mouse_pos = get_global_mouse_position()
 	var mouse_tile = ground_layer.local_to_map(ground_layer.to_local(get_global_mouse_position()))
 
 	if event.is_action_pressed("right_click"):
 		# Ensure we aren't using the watering can
-		if GameManager.selected_item.is_empty() or GameManager.selected_item["type"] != "watering can":
+		if GameManager.selected_item.is_empty() or !tools.has( GameManager.selected_item["type"]):
 			var plant_to_harvest = null    
 			
 			for crop in crop_container.get_children():
@@ -213,10 +214,41 @@ func _unhandled_input(event: InputEvent) -> void:
 							GameManager.selected_item["count"]-=1
 							GameManager.inventory_changed.emit()
 						else: print("not a seed")
-		elif GameManager.selected_item["type"] == "watering can":
-			$Map.water_square()
+		elif tools.has(GameManager.selected_item["type"]):
+			var type=GameManager.selected_item["type"]
+			print(type)
+			if type == "watering can":
+				$Map.water_square()
+			if type == "sprinkler":
+				# 1. Find the tile coordinates under the mouse
+				var local_mouse = ground_layer.to_local(mouse_pos)
+				var tile_pos = ground_layer.local_to_map(local_mouse)
+				
+				# 2. Convert that tile coordinate back to the CENTER of the square
+				# map_to_local returns the center of the tile in Godot 4
+				var tile_center_local = ground_layer.map_to_local(tile_pos)
+				var tile_center_global = ground_layer.to_global(tile_center_local)
+				
+				# 3. Instantiate the sprinkler
+				# (Ensure 'sprinkler_scene' is preloaded at the top of your script)
+				var new_sprinkler = sprinkler_scene.instantiate()
+				
+				# 4. Set position and add to the scene
+				new_sprinkler.global_position = tile_center_global
+				add_child(new_sprinkler) 
+				
+				# 5. Update Inventory
+				GameManager.selected_item["count"] -= 1
+				if GameManager.selected_item["count"] <= 0:
+					GameManager.selected_item = {} # Clear item if empty
+				
+				GameManager.inventory_changed.emit()
 
 	if event.is_action_pressed(("left_click")):
 		if GameManager.selected_item!={} and GameManager.selected_item["type"]=="hoe":
 				$Map.hoe_square()
 				
+
+
+func _on_button_3_button_down() -> void:
+	pass # Replace with function body.

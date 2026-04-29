@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oakxc1u4lb0g"
-path="res://.godot/imported/Corn.png-29513cdbb83077ac23390cd415705f31.ctex"
+uid="uid://xv53scforw6o"
+path="res://.godot/imported/thorneye.png-4bc7dfd3af41b96a410208d7e0a56cb0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/icons/Corn.png"
-dest_files=["res://.godot/imported/Corn.png-29513cdbb83077ac23390cd415705f31.ctex"]
+source_file="res://Assets/icons/thorneye.png"
+dest_files=["res://.godot/imported/thorneye.png-4bc7dfd3af41b96a410208d7e0a56cb0.ctex"]
 
 [params]
 

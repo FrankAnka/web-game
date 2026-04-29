@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ck86sf31mhddd" path="res://Scenes/UI/recipe_ui_slot.tscn" id="2_ic2qw"]
 [ext_resource type="Script" uid="uid://cjsmbd5xpn1us" path="res://recipe_data.gd" id="2_osrsm"]
 [ext_resource type="Resource" uid="uid://utw4plh2yvv" path="res://Items/Recipes/wooden_hoe_recipe.tres" id="3_ic2qw"]
+[ext_resource type="Resource" uid="uid://lklr47mrq5ph" path="res://Items/Recipes/sprinkler_recipe.tres" id="5_yyv02"]
 
 [node name="InventoryUI" type="Control" unique_id=737029227 groups=["Inventory"]]
 layout_mode = 3
@@ -15,7 +16,7 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_s6m5x")
 recipe_ui_scene = ExtResource("2_ic2qw")
-all_recipes = Array[ExtResource("2_osrsm")]([ExtResource("3_ic2qw")])
+all_recipes = Array[ExtResource("2_osrsm")]([ExtResource("3_ic2qw"), ExtResource("5_yyv02")])
 
 [node name="Hotbar" type="PanelContainer" parent="." unique_id=1467997763]
 layout_mode = 1

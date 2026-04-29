@@ -31,7 +31,6 @@ func hoe_square():
 
 func water_square():
 	var mouse_pos = get_global_mouse_position()
-
 	var local_mouse_pos = ground.to_local(mouse_pos)
 
 	var tile_pos = ground.local_to_map(local_mouse_pos)
@@ -40,7 +39,9 @@ func water_square():
 	var player_tile = ground.local_to_map(player_local_pos)
 
 	var distance = (tile_pos - player_tile).length()
-	
-	if distance <= 3.0 and GameManager.selected_item["type"] == "watering can" and tile_data.get_custom_data("is_hoed")and tile_data.get_custom_data("is_watered")==false:
+	print(GameManager.selected_item["type"],tile_data.get_custom_data("is_hoed"),tile_data.get_custom_data("is_watered"))
+	if distance <= 3.0 and GameManager.selected_item["type"] == "watering can" and tile_data.get_custom_data("is_hoed") and tile_data.get_custom_data("is_watered")==false:
+		print("distance")
 		if tile_data:
+			print("watering")
 			ground.set_cell(tile_pos,0, ground.get_cell_atlas_coords(tile_pos)+Vector2i(6,0))

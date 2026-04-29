@@ -1,6 +1,6 @@
 extends Node2D
 
-var inventory = {1:{"type":"thorneye","count":21},81:{"type":"hoe","count":1},82:{"type":"watering can","count":1},84:{"type":"thorneye seeds","count":3},85:{"type":"shadevine seeds","count":3}}
+var inventory = {1:{"type":"thorneye","count":21},81:{"type":"hoe","count":1},82:{"type":"watering can","count":1},84:{"type":"thorneye seeds","count":3},85:{"type":"shadevine seeds","count":3},86:{"type":"sprinkler","count":4}}
 var money = 100
 var max_stack = 999
 var held_item = null
@@ -12,10 +12,11 @@ var held_item_origin_slot: int = -1
 @export var tier_req = {1:{1:{"type":"thorneye","count":10},2:{"type":"shadevine","count":8}},2:{1:{"type":"thorneye","count":999}},3:{}} # with the required items to be sold to advance to a higher tier, formatted as tier:{"itemname:"amount,}
 var current_tier = 0
 var cur_tier_sold = {}
-
+	
 signal inventory_changed
 signal mouse_slot_updated
 signal money_changed(new_amount)
+signal tier_up
 	
 	
 func add_item(item_name: String, amount: int):

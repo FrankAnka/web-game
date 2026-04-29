@@ -8,37 +8,44 @@ var current_inventory: Array[Dictionary] = []
 
 func _ready():
 	generate_inventory()
+	if GameManager:
+		GameManager.tier_up.connect(_tier_up)
+
+func _tier_up():
+	generate_inventory()
 
 func generate_inventory():
-	var total_weight: int = 0
+	current_inventory=[]
+	#var total_weight: int = 0
 	possibleItems = possible_items[GameManager.current_tier]
-	for item in possibleItems:
-		total_weight += item.weight
+	#for item in possibleItems:
+		#total_weight += item.weight
 		
-	for i in range(shop_slots):
-		var roll = randi_range(1, total_weight)
-		var picked_item: ItemData = null
+	#for i in range(shop_slots):
+		#var roll = randi_range(1, total_weight)
+		#var picked_item: ItemData = null
 		
 		# Weighted random pick
-		for item in possibleItems:
-			roll -= item.weight
-			if roll <= 0:
-				picked_item = item
-				break
+		#for item in possibleItems:
+		#	roll -= item.weight
+		#	if roll <= 0:
+			#	picked_item = item
+			#	break
 				
 		# Generate random stock and save it
-		var stock_amount = randi_range(picked_item.min_stock, picked_item.max_stock)
-		
+		#var stock_amount = randi_range(picked_item.min_stock, picked_item.max_stock)
+	var stock_amount = 999
 		# Check if we already picked this item to avoid duplicates (optional, but good practice)
-		var already_has = false
-		for slot in current_inventory:
-			if slot["item"] == picked_item:
-				slot["stock"] += stock_amount
-				already_has = true
-				break
+		#var already_has = false
+		#for slot in current_inventory:
+		#	if slot["item"] == picked_item:
+			#	slot["stock"] += stock_amount
+			#	already_has = true
+			#	brea
 				
-		if not already_has:
-			current_inventory.append({"item": picked_item, "stock": stock_amount})
+		#if not already_has:
+	for item in possibleItems:
+		current_inventory.append({"item": item, "stock": stock_amount})
 
 # Connect the Area2D's input_event signal to this function
 func _on_interact_area_input_event(viewport, event, shape_idx):

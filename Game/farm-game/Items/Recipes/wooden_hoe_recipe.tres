@@ -7,7 +7,7 @@
 script = ExtResource("2_7kmjw")
 result_item = ExtResource("1_o6dj4")
 ingredients = {
-"corn": 1,
-"wheat": 1
+"shadevine": 1,
+"thornshade": 1
 }
 metadata/_custom_type_script = "uid://cjsmbd5xpn1us"

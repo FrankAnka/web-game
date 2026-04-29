@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="CropData" format=3 uid="uid://bya1lex7t5bsp"]
 
-[ext_resource type="Texture2D" uid="uid://cxn5lc2h3sdm1" path="res://Items/Items/Textures/Red.png" id="1_8h2le"]
+[ext_resource type="Texture2D" uid="uid://cxn5lc2h3sdm1" path="res://Items/Items/Textures/sprinkler.png" id="1_8h2le"]
 [ext_resource type="Texture2D" uid="uid://d0j82htw4735k" path="res://Items/Items/Textures/Blue.png" id="2_pl8kk"]
 [ext_resource type="Texture2D" uid="uid://cfnedse76gf2i" path="res://Items/Items/Textures/Greeen.png" id="3_v01wr"]
-[ext_resource type="Texture2D" uid="uid://oakxc1u4lb0g" path="res://Assets/icons/Corn.png" id="4_y1nwd"]
+[ext_resource type="Texture2D" uid="uid://xv53scforw6o" path="res://Assets/icons/thorneye.png" id="4_pl8kk"]
 [ext_resource type="Script" uid="uid://gb7qjv4bugie" path="res://Scripts/CropData.gd" id="5_0ptel"]
 
 [resource]
@@ -12,5 +12,5 @@ plant_name = "Thorneye"
 growth_stages = Array[Texture2D]([ExtResource("1_8h2le"), ExtResource("2_pl8kk"), ExtResource("3_v01wr")])
 cost = 20
 req_water = true
-icon = ExtResource("4_y1nwd")
+icon = ExtResource("4_pl8kk")
 metadata/_custom_type_script = "uid://gb7qjv4bugie"
