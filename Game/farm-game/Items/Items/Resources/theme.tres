@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://s6t3a1otgfn4"]
+
+[ext_resource type="FontFile" uid="uid://bmob0hsha1brw" path="res://Scenes/UI/PirataOne-Regular.ttf" id="1_5hf5f"]
+
+[resource]
+default_font = ExtResource("1_5hf5f")

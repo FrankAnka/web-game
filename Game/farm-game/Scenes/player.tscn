@@ -5,6 +5,18 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 
+[sub_resource type="Gradient" id="Gradient_cvnsp"]
+offsets = PackedFloat32Array(0, 0.34855768, 1)
+colors = PackedColorArray(1.2335097, 0.9656348, 0.37886146, 1, 0.85882354, 0.52156866, 0.27058825, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6t5aa"]
+gradient = SubResource("Gradient_cvnsp")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.4878472, 0.4982639)
+fill_to = Vector2(0.9322917, 0.5017361)
+
 [node name="Player" type="CharacterBody2D" unique_id=584665982 groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_onrkg")
@@ -16,3 +28,8 @@ shape = SubResource("RectangleShape2D_onrkg")
 texture = ExtResource("1_4flbx")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2074331290]
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=229752015]
+position = Vector2(3.0517578e-05, 0)
+texture = SubResource("GradientTexture2D_6t5aa")
+texture_scale = 0.01

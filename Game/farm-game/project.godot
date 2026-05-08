@@ -37,6 +37,7 @@ ShopSlot=""
 CraftSlot=""
 Inventory=""
 Progress=""
+lighting=""
 
 [input]
 

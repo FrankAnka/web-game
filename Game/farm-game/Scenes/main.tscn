@@ -8,17 +8,21 @@
 [ext_resource type="PackedScene" uid="uid://b6dqgo0hgm8ua" path="res://Scenes/Managers/game_manager.tscn" id="6_21xkr"]
 [ext_resource type="PackedScene" uid="uid://ds6povkuuoycc" path="res://Scenes/UI/inventory.tscn" id="7_6bp64"]
 [ext_resource type="PackedScene" uid="uid://crtlis5dnx5in" path="res://Scenes/UI/tier_progress_ui.tscn" id="7_k12tt"]
+[ext_resource type="Theme" uid="uid://s6t3a1otgfn4" path="res://Items/Items/Resources/theme.tres" id="9_ee4r6"]
 [ext_resource type="PackedScene" uid="uid://bfotctnvqd00i" path="res://Scenes/shopkeeper.tscn" id="9_hptm8"]
 [ext_resource type="PackedScene" uid="uid://c34csjlc71l2c" path="res://Scenes/UI/mouse_item.tscn" id="9_ynf5e"]
 [ext_resource type="PackedScene" uid="uid://caahrv3agmse" path="res://Scenes/UI/shop_window.tscn" id="10_hptm8"]
 [ext_resource type="Script" uid="uid://dwcm8wo77r7hn" path="res://Scripts/ItemData.gd" id="10_jkdf5"]
+[ext_resource type="Script" uid="uid://b1rb1pk8hi1s0" path="res://Scenes/clock.gd" id="11_pdsj5"]
 [ext_resource type="Texture2D" uid="uid://77prwr17e2kb" path="res://Assets/icons/hoe.png" id="11_wsu2k"]
 [ext_resource type="Resource" uid="uid://b1twpxvx3po3j" path="res://Items/Items/Resources/shadevine seeds.tres" id="12_k12tt"]
+[ext_resource type="Script" uid="uid://birtc8i1egvgs" path="res://Scenes/day_counter.gd" id="13_gt3je"]
 [ext_resource type="Resource" uid="uid://bu0k61u7jh3ya" path="res://Items/Items/Resources/thorneye seeds.tres" id="13_h1bgf"]
 [ext_resource type="Resource" uid="uid://bsbd150ld7kiy" path="res://Items/Items/Resources/sprinkler.tres" id="15_fevyy"]
 [ext_resource type="Resource" uid="uid://b5fhmmvkol7xq" path="res://Items/Items/Resources/watering can.tres" id="15_h1bgf"]
 [ext_resource type="PackedScene" uid="uid://cln88jqvujokx" path="res://Scenes/sell_hole.tscn" id="15_wsu2k"]
 [ext_resource type="Resource" uid="uid://d1cr6xbbc5lo7" path="res://Items/Items/Resources/hoe.tres" id="16_hibaj"]
+[ext_resource type="Script" uid="uid://c4lduvlvhtqxa" path="res://Scenes/lighting.gd" id="20_hibaj"]
 
 [sub_resource type="Resource" id="Resource_k12tt"]
 script = ExtResource("10_jkdf5")
@@ -34,6 +38,9 @@ metadata/_custom_type_script = "uid://dwcm8wo77r7hn"
 [node name="Main" type="Node2D" unique_id=437526742]
 script = ExtResource("1_jjvhh")
 
+[node name="Lighting" type="CanvasModulate" parent="." unique_id=1682580318 groups=["lighting"]]
+script = ExtResource("20_hibaj")
+
 [node name="Map" parent="." unique_id=1643062000 instance=ExtResource("3_21xkr")]
 
 [node name="Crops" type="Node2D" parent="." unique_id=1745873115]
@@ -45,21 +52,28 @@ scale = Vector2(0.5, 0.5)
 [node name="PlantingManager" parent="." unique_id=1574053782 instance=ExtResource("5_kry3j")]
 
 [node name="DayManager" parent="." unique_id=1085104065 instance=ExtResource("4_6bp64")]
-day_duration = 1.0
+day_duration = 60.0
 
 [node name="GameManager" parent="." unique_id=272472241 instance=ExtResource("6_21xkr")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1354511227]
 
 [node name="TierProgressUI" parent="CanvasLayer" unique_id=548901472 groups=["Progress"] instance=ExtResource("7_k12tt")]
+anchors_preset = -1
+anchor_top = 0.10700001
+anchor_bottom = 0.10700001
+theme = ExtResource("9_ee4r6")
 
 [node name="InventoryUI" parent="CanvasLayer" unique_id=737029227 instance=ExtResource("7_6bp64")]
+theme = ExtResource("9_ee4r6")
 
 [node name="MouseItem" parent="CanvasLayer" unique_id=1186603526 instance=ExtResource("9_ynf5e")]
+theme = ExtResource("9_ee4r6")
 
 [node name="Button2" type="Button" parent="CanvasLayer" unique_id=1376217740]
 offset_right = 52.0
 offset_bottom = 31.0
+theme = ExtResource("9_ee4r6")
 text = "LOAD"
 metadata/_edit_use_anchors_ = true
 
@@ -67,8 +81,42 @@ metadata/_edit_use_anchors_ = true
 offset_left = 52.0
 offset_right = 99.0
 offset_bottom = 31.0
+theme = ExtResource("9_ee4r6")
 text = "SAVE"
 metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=1962392517]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -101.0
+offset_right = -1.0
+offset_bottom = 65.0
+grow_horizontal = 0
+
+[node name="Clock" type="RichTextLabel" parent="CanvasLayer/PanelContainer" unique_id=1455374118]
+layout_mode = 2
+theme = ExtResource("9_ee4r6")
+theme_override_font_sizes/normal_font_size = 48
+scroll_active = false
+script = ExtResource("11_pdsj5")
+
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer" unique_id=894498326]
+custom_minimum_size = Vector2(100, 60)
+anchors_preset = -1
+anchor_left = 0.947
+anchor_right = 0.947
+offset_left = -100.0
+offset_bottom = 65.0
+grow_horizontal = 0
+theme = ExtResource("9_ee4r6")
+
+[node name="Day counter" type="RichTextLabel" parent="CanvasLayer/PanelContainer2" unique_id=357070636]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 48
+fit_content = true
+scroll_active = false
+script = ExtResource("13_gt3je")
 
 [node name="Shopkeeper" parent="." unique_id=2066653834 instance=ExtResource("9_hptm8")]
 position = Vector2(583, 209)
