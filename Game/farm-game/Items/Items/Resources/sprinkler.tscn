@@ -7,6 +7,7 @@
 size = Vector2(48, 48)
 
 [node name="Sprinkler" type="Node2D" unique_id=1965843652]
+z_index = -1
 script = ExtResource("1_0u2rb")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=15132044]

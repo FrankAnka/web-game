@@ -22,7 +22,10 @@ func get_full_gamestate() -> Dictionary:
 		"map_data": [],
 		"plants": [],
 		"inventory": GameManager.inventory,
-		"money": GameManager.money
+		"money": GameManager.money,
+		"stage":GameManager.current_tier,
+		"stage_prog":GameManager.cur_tier_sold
+		
 	}
 	
 	# 1. Save Modified Map Tiles (e.g., Hoed Ground)
@@ -40,9 +43,11 @@ func get_full_gamestate() -> Dictionary:
 				"atlas": [atlas_coords.x, atlas_coords.y]
 			})
 
-	# 2. Save Each Plant
+# 2. Save Each Plant
 	for crop in $Crops.get_children():
-		var crop_pos = ground_layer.local_to_map(crop.global_position)
+		var local_pos = ground_layer.to_local(crop.global_position)
+		var crop_pos = ground_layer.local_to_map(local_pos)
+		
 		state["plants"].append({
 			"type": crop.data.plant_name,
 			"stage": crop.current_stage,
@@ -70,13 +75,17 @@ func save_to_database():
 	http_request.request(url, headers, HTTPClient.METHOD_POST, json_data)
 	print("Saving game state...")
 	
-func _on_request_completed( response_code,  body):
-	print("request completed")
-	var response = JSON.parse_string(body.get_string_from_utf8())
+func _on_request_completed(result, response_code, headers, body):
+	print("Request completed. Result code: ", result)
+	
+	# body is a PackedByteArray, so we convert it to a string to read it
+	var response_text = body.get_string_from_utf8()
+	var response = JSON.parse_string(response_text)
+	
 	if response_code == 200:
 		print("Data saved successfully: ", response)
 	else:
-		print("Save failed with code: ", response_code)
+		print("Save failed with HTTP code: ", response_code)
 
 func _on_button_button_down() -> void:
 	print("save pressed")
@@ -104,8 +113,8 @@ func fetch_game_data():
 		is_loading = false
 		push_error("HTTP Request failed to initiate.")
 
-func _on_data_received(response_code, body):
-	print("data recieved")
+func _on_data_received(result, response_code, headers, body):
+	print("Data received. Result code: ", result)
 	is_loading = false
 	
 	if response_code == 200:
@@ -115,12 +124,11 @@ func _on_data_received(response_code, body):
 		if parse_err == OK:
 			var data = json.data
 			print("Data received! Rebuilding world...")
-			_apply_game_state(data) # This is the function from the previous step
+			_apply_game_state(data)
 		else:
 			print("Error parsing game state JSON.")
 	elif response_code == 404:
 		print("No save file found. Initializing new game.")
-		queue_free()
 	else:
 		print("Server error: ", response_code)
 
@@ -136,7 +144,9 @@ func _apply_game_state(data: Dictionary):
 		var pos = Vector2i(tile.x, tile.y)
 		var atlas = Vector2i(tile.atlas[0], tile.atlas[1])
 		ground_layer.set_cell(pos, tile.id, atlas)
-
+	#tier
+	GameManager.current_tier = int(data.get("stage", 0))
+	GameManager.cur_tier_sold = data.get("stage_prog", {})
 	# 3. Restore Plantsx
 	# First, clear existing plants to avoid duplicates
 	for child in $Crops.get_children():
@@ -177,6 +187,8 @@ func _apply_game_state(data: Dictionary):
 				clean_inv[slot_index] = null
 				
 		GameManager.inventory = clean_inv
+		
+		
 
 func _on_button_2_button_down() -> void:
 	print("fetch pressed")

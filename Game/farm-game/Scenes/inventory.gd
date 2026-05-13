@@ -119,7 +119,7 @@ func attempt_sell(slot_index: int, start_pos: Vector2, item_texture: Texture2D):
 	
 	if current_mode == "sell":
 		var data = GameManager.inventory.get(slot_index)
-		var next_tier = GameManager.tier_req[GameManager.current_tier+1]
+		var next_tier = GameManager.tier_req[int(GameManager.current_tier) + 1]
 		
 		if data:
 			var resource = load("res://Items/Items/Resources/" + data["type"]+".tres")
@@ -137,8 +137,8 @@ func attempt_sell(slot_index: int, start_pos: Vector2, item_texture: Texture2D):
 				GameManager.cur_tier_sold[data["type"]] = 1
 				
 			# 2. Check if a next tier actually exists
-			if GameManager.tier_req.has(GameManager.current_tier + 1):
-				var next_tier_req = GameManager.tier_req[GameManager.current_tier + 1]
+			if GameManager.tier_req.has(int(GameManager.current_tier) + 1):
+				var next_tier_req = GameManager.tier_req[int(GameManager.current_tier) + 1]
 				var tier_completed = true
 				
 				# 3. Verify if current progress meets ALL requirements for the next tier

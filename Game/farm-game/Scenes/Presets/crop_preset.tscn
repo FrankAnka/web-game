@@ -9,6 +9,8 @@ size = Vector2(32, 32)
 script = ExtResource("1_iwhk8")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=806759373]
+scale = Vector2(1.5, 1.5)
+offset = Vector2(0, -20)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1608133086]
 
