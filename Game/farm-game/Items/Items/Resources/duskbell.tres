@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CropData" format=3 uid="uid://ej6vnkp5l371"]
+
+[ext_resource type="Texture2D" uid="uid://bg2qgka5qcmdm" path="res://Items/Items/Textures/Duskbell S1.png" id="1_1avn4"]
+[ext_resource type="Script" uid="uid://gb7qjv4bugie" path="res://Scripts/CropData.gd" id="1_ei6gb"]
+[ext_resource type="Texture2D" uid="uid://boqqes8u3at78" path="res://Items/Items/Textures/Duskbell S2.png" id="2_ctx5n"]
+[ext_resource type="Texture2D" uid="uid://bm4ld8phpughw" path="res://Items/Items/Textures/Duskbell S3.png" id="3_tjcf0"]
+[ext_resource type="Texture2D" uid="uid://d0jofgxwo315g" path="res://Items/Items/Textures/Duskbell S4.png" id="4_gyh5y"]
+[ext_resource type="Texture2D" uid="uid://cssffgeo6h840" path="res://Assets/icons/Duskbell Icon.png" id="5_lhxo6"]
+
+[resource]
+script = ExtResource("1_ei6gb")
+plant_name = "Duskbell"
+growth_stages = Array[Texture2D]([ExtResource("1_1avn4"), ExtResource("2_ctx5n"), ExtResource("3_tjcf0"), ExtResource("4_gyh5y")])
+cost = 35
+max_harvest = 2
+min_harvest = 3
+req_water = true
+icon = ExtResource("5_lhxo6")
+metadata/_custom_type_script = "uid://gb7qjv4bugie"

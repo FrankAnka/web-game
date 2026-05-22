@@ -6,7 +6,7 @@ import { generateSessionToken, createSession } from '$lib/auth';
 import { detectSuspiciousActivity } from '$lib/sessionCleanup';
 
 // List of emails that should be given admin privileges
-const ADMIN_EMAILS = ['frank@renberg.nu', 'frankrenberg7@gmail.com', "admin@admin.com"];
+const ADMIN_EMAILS = ['frank@renberg.nu', 'frankrenberg7@gmail.com', 'admin@admin.com'];
 
 export const load = (async () => {}) satisfies ServerLoad;
 
@@ -60,7 +60,6 @@ export const actions = {
 		const email = data.get('email')?.toString();
 		const password = data.get('password')?.toString();
 
-
 		let clientIP = getClientAddress();
 
 		// Fallback to x-forwarded-for if behind proxy
@@ -84,10 +83,10 @@ export const actions = {
 		}
 
 		const { salt, hash } = hashPassword(password);
-		
+
 		// Check if email is in admin list
 		const userType = ADMIN_EMAILS.includes(email?.toLowerCase() || '') ? 'admin' : 'user';
-		
+
 		const user = await prisma.user.create({
 			data: { name, email, salt, hash, permissions: userType }
 		});
@@ -102,7 +101,7 @@ export const actions = {
 			httpOnly: true
 		});
 
-		throw redirect(303, `/game`); 
+		throw redirect(303, `/game`);
 	},
 	login: async ({ request, getClientAddress, cookies }) => {
 		const data = await request.formData();
@@ -207,7 +206,5 @@ export const actions = {
 			}
 		});
 		throw redirect(303, '/login');
-	},
-
-
+	}
 } satisfies Actions;

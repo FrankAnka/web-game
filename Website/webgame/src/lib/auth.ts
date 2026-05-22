@@ -124,5 +124,4 @@ export async function validateSession(token: string) {
 	});
 
 	return session;
-
 }

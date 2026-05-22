@@ -25,24 +25,32 @@ var shop_node: Node2D = null
 signal tier_up(new_tier)
 
 func _ready():
+	# 1. Build menus while everything is VISIBLE so Godot can calculate UI sizes
 	populate_crafting_menu()
+	
 	if GameManager.has_signal("inventory_changed"):
 		GameManager.inventory_changed.connect(refresh_ui)
 
-	# 1. Create the empty grid
+	# 2. Populate main inventory slots
 	for i in range(TOTAL_SLOTS):
 		var slot = slot_scene.instantiate()
 		grid.add_child(slot)
-		slot.slot_index = i+1
+		slot.slot_index = i + 1
 		slots.append(slot)
-		slot.update_slot(null) # Initxialize as empty
+		slot.update_slot(null) 
+
+	# 3. Populate hotbar slots
 	for i in range(hotbar_slots):
 		var slot = slot_scene.instantiate()
 		hotbar_grid.add_child(slot)
-		slot.slot_index =80+i+1
+		slot.slot_index = 80 + i + 1
 		slots.append(slot)
 		slot.update_slot(null)
+		
 	refresh_ui()
+	
+	$PanelContainer.visible = false
+	GameManager.inv_active = false
 
 
 func refresh_ui():
@@ -175,7 +183,7 @@ func openClose(mode: String, shop: Node2D = null):
 	shop_node = shop # Save the hole node so we know where to throw items!
 	
 	$PanelContainer.visible = !$PanelContainer.visible
-	$TabContainer.visible = !$TabContainer.visible
+	#$TabContainer.visible = !$TabContainer.visible
 	GameManager.inv_active = !GameManager.inv_active
 	if visible: refresh_ui()
 

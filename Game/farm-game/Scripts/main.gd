@@ -10,6 +10,7 @@ var sprinkler_scene = preload("res://Items/Items/Resources/sprinkler.tscn")
 @export var crop_library: Dictionary = {
 	"thorneye": preload("res://Items/Items/Resources/thorneye.tres"),
 	"shadevine":preload("res://Items/Items/Resources/shadevine.tres"),
+	"duskbell":preload("res://Items/Items/Resources/duskbell.tres")
 	
 }
 
@@ -35,13 +36,16 @@ func get_full_gamestate() -> Dictionary:
 		var source_id = ground_layer.get_cell_source_id(cell_pos)
 		var atlas_coords = ground_layer.get_cell_atlas_coords(cell_pos)
 		
-		if source_id != 0: # Only save if it's been hoed (Source ID 1+)
-			state["map_data"].append({
-				"x": cell_pos.x,
-				"y": cell_pos.y,
-				"id": source_id,
-				"atlas": [atlas_coords.x, atlas_coords.y]
-			})
+		for x in range(5,15):
+			for y in range(3,10): # Only save if it's been hoed (Source ID 1+)
+				if atlas_coords == Vector2i(x,y):	
+					state["map_data"].append({
+						"x": cell_pos.x,
+						"y": cell_pos.y,
+						"id": source_id,
+						"atlas": [atlas_coords.x, atlas_coords.y]
+					})
+					print(state["map_data"])
 
 # 2. Save Each Plant
 	for crop in $Crops.get_children():

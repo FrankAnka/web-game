@@ -21,7 +21,6 @@
 			<a class="nav-logo" href={resolve(data.user ? `/game/` : '/')}>Game</a>
 		{/if}
 		<a class="nav-logo" href={resolve('/scoreboard')}>Leaderboard</a>
-		
 	</div>
 
 	<div class="nav-right">

@@ -251,7 +251,6 @@ use:enhance={({ _result }) => { ... }} or use:enhance={{ after: (_result) => { /
 		box-shadow: 0 8px 20px rgba(37, 99, 235, 0.12);
 	}
 
-
 	.btn:hover {
 		transform: translateY(-1px);
 	}

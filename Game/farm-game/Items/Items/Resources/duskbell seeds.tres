@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://ccd6bjclndv0y"]
+
+[ext_resource type="Texture2D" uid="uid://csvi5pjv5th60" path="res://Assets/icons/Duskbell Seeds.png" id="1_wpj0l"]
+[ext_resource type="Script" uid="uid://dwcm8wo77r7hn" path="res://Scripts/ItemData.gd" id="2_wit0b"]
+
+[resource]
+script = ExtResource("2_wit0b")
+item_name = "Duskbell Seeds"
+cost = 15
+icon = ExtResource("1_wpj0l")
+is_seed = true
+plant_to_place = "duskbloom"
+description = "seeds"
+metadata/_custom_type_script = "uid://dwcm8wo77r7hn"

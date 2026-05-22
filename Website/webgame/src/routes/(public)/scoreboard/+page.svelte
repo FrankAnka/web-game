@@ -4,7 +4,7 @@
 
 <div class="leaderboard-container">
 	<h1>🏆 Leaderboard</h1>
-	
+
 	<div class="leaderboard">
 		{#if data.leaderboard && data.leaderboard.length > 0}
 			<div class="leaderboard-header">
@@ -12,7 +12,7 @@
 				<span class="name">Player</span>
 				<span class="score">Score</span>
 			</div>
-			
+
 			{#each data.leaderboard as player, index}
 				<div class="leaderboard-row" class:top-three={index < 3}>
 					<span class="rank">

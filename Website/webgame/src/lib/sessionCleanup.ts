@@ -6,7 +6,6 @@ export async function cleanupExpiredSessions() {
 			expiresAt: { lt: new Date() }
 		}
 	});
-
 }
 
 // Run daily (in a real app, use a cron job)
